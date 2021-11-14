@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "941457875314",
+    "project_id": "preparation-app-2ad60",
+    "storage_bucket": "preparation-app-2ad60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941457875314:android:47749e0a1ab318e7813deb",
+        "android_client_info": {
+          "package_name": "com.a1techandroid.test_preperation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941457875314-40o04nji04v6irpffje20b6qjc2uup30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEIm2KAfTLKDWeKAAGzF8kZndRBzHL3X0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941457875314-40o04nji04v6irpffje20b6qjc2uup30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

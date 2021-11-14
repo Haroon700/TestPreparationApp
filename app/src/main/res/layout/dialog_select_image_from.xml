@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:id="@+id/task_filetr_heading"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change profile picture"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_centerInParent="true">
+        </TextView>
+
+    </RelativeLayout>>
+
+    <TextView
+        android:id="@+id/btnChooseFromGallery"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/task_filetr_heading"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/color3"
+        android:text="Choose from Gallery"
+        android:textColor="@color/white">
+    </TextView>
+
+    <TextView
+        android:id="@+id/btnTakePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btnChooseFromGallery"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@drawable/rounded_corner"
+        android:text="Take photo"
+        android:backgroundTint="@color/color3"
+        android:textColor="@color/white">
+    </TextView>
+
+
+
+
+</RelativeLayout>
