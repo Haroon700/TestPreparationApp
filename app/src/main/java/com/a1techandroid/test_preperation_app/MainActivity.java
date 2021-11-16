@@ -1,6 +1,7 @@
 package com.a1techandroid.test_preperation_app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         tabbar = findViewById(R.id.bottomBar);
         btnnn = findViewById(R.id.btnnn);
+        Log.i("test", "test");
     }
 
     private void setUpClick(){

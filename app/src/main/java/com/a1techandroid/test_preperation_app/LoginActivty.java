@@ -4,6 +4,7 @@ package com.a1techandroid.test_preperation_app;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -78,6 +79,7 @@ public class LoginActivty extends AppCompatActivity {
         googleBtn =  findViewById(R.id.googleBtn);
         forgotPassword =  findViewById(R.id.forgot_layout);
         loginButton1.setReadPermissions(Arrays.asList("haroon.chudhary555@gmail.com"));
+        Log.i("test", "test");
 
     }
 
