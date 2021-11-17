@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,6 +23,7 @@ public class SignupActivty extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button signUpButton;
     private TextView btnLogin;
+    SpinKitView spinKitView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,8 @@ public class SignupActivty extends AppCompatActivity {
         etPassword=findViewById(R.id.etPassword);
         signUpButton=findViewById(R.id.btnSignUp);
         btnLogin=findViewById(R.id.login_textview);
+        spinKitView =  findViewById(R.id.spin_kit);
+        spinKitView.setVisibility(View.INVISIBLE);
     }
 
     private void setUpClick(){
@@ -42,12 +46,15 @@ public class SignupActivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signUp(etEmail.getText().toString(), etPassword.getText().toString());
+                spinKitView.setVisibility(View.VISIBLE);
+                spinKitView.animate();
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignupActivty.this, LoginActivty.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         });
@@ -58,15 +65,19 @@ public class SignupActivty extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        spinKitView.setVisibility(View.INVISIBLE);
+                        spinKitView.clearAnimation();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(SignupActivty.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
 
@@ -75,6 +86,7 @@ public class SignupActivty extends AppCompatActivity {
     private void updateUI(Object o) {
         Intent i = new Intent(SignupActivty.this, MainActivity.class);
         startActivity(i);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 }

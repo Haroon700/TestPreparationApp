@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white">
     <!--<ScrollView-->
     <!--android:layout_width="match_parent"-->
@@ -30,7 +31,9 @@
             android:text="Login"
             android:textColor="@color/black"
             android:textSize="45dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:fontFamily="@font/lato_black"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -139,19 +142,26 @@
             android:textColor="@color/black"
             />
 
-        <Button
+        <RelativeLayout
             android:id="@+id/googleBtn"
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/login_button"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/rounded_corner"
-            android:text="Google SignIn"
+            android:background="@drawable/circle"
             android:textColor="@color/black"
             android:drawablePadding="10dp"
-            />
+            android:layout_centerHorizontal="true"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/google_icon"
+                />
+        </RelativeLayout>
 
 
         <ImageView
@@ -203,7 +213,9 @@
                 android:text=" SIGNUP"
                 android:textColor="@color/black"
                 android:textSize="14dp"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:fontFamily="@font/lato_black"
+                />
         </LinearLayout>
 
         <Switch
@@ -216,6 +228,16 @@
             android:text="Live"
             android:visibility="gone" />
     </RelativeLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.DoubleBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/color9"
+        tools:ignore="MissingConstraints"
+        android:layout_centerInParent="true"/>
 
     <!--</LinearLayout>-->
 

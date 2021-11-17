@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+
         tabbar = findViewById(R.id.bottomBar);
         btnnn = findViewById(R.id.btnnn);
         Log.i("test", "test");

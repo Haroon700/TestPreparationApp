@@ -26,6 +26,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.Login;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -48,13 +49,14 @@ import java.util.Arrays;
 public class LoginActivty extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText etEmail, etPassword;
-    private Button loginButton, googleBtn;
+    private Button loginButton;
     private TextView btn_singup;
     CallbackManager callbackManager;
     LoginButton loginButton1;
     GoogleSignInClient mGoogleSignInClient;
-    RelativeLayout forgotPassword;
+    RelativeLayout forgotPassword, googleBtn;
     Dialog selectImageFromDialog;
+    SpinKitView spinKitView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,8 @@ public class LoginActivty extends AppCompatActivity {
         btn_singup =  findViewById(R.id.btn_singup);
         googleBtn =  findViewById(R.id.googleBtn);
         forgotPassword =  findViewById(R.id.forgot_layout);
+        spinKitView =  findViewById(R.id.spin_kit);
+        spinKitView.setVisibility(View.INVISIBLE);
         loginButton1.setReadPermissions(Arrays.asList("haroon.chudhary555@gmail.com"));
         Log.i("test", "test");
 
@@ -87,6 +91,8 @@ public class LoginActivty extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                spinKitView.setVisibility(View.VISIBLE);
+                spinKitView.animate();
                 login(etEmail.getText().toString(), etPassword.getText().toString());
             }
         });
@@ -95,6 +101,7 @@ public class LoginActivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivty.this, SignupActivty.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         });
@@ -109,16 +116,22 @@ public class LoginActivty extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                startActivity(new Intent(LoginActivty.this, ForgotPassword.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                finish();
+//                showDialog();
             }
         });
     }
 
     private void login(String email, String password){
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        spinKitView.setVisibility(View.INVISIBLE);
+                        spinKitView.clearAnimation();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();

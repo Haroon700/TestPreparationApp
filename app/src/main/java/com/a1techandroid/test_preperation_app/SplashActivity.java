@@ -24,10 +24,12 @@ public class SplashActivity extends AppCompatActivity {
                 if(currentUser != null){
                     Intent i = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(i);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }else {
                     Intent i = new Intent(SplashActivity.this, LoginActivty.class);
                     startActivity(i);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
 
