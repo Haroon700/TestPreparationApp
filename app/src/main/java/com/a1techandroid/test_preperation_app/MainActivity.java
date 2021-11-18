@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
-        setUpClick();
-        loadFragment();
+        setContentView(R.layout.activity_main_new);
+//        init();
+//        setUpClick();
+//        loadFragment();
     }
 
     private void init(){

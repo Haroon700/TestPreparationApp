@@ -37,4 +37,12 @@
     <color name="pending">#fdd835</color>
     <color name="done">#37bc9b</color>
     <color name="archived">#aab2bd</color>
+
+
+    <color name="peach">#FF6F5E</color>
+    <color name="gray">#A0A3B1</color>
+    <color name="edit_text_bg">#F2F3F7</color>
+
+    <color name="blue_med">#03A9F4</color>
+    <color name="light_blue_med">#89C4DA</color>
 </resources>
