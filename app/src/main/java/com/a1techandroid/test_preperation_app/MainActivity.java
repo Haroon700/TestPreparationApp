@@ -1,11 +1,13 @@
 package com.a1techandroid.test_preperation_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
 
@@ -22,64 +24,69 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class MainActivity extends AppCompatActivity {
     private SmoothBottomBar tabbar;
     private Button btnnn;
+    CardView cvStartQuiz;
+    CardView cvRule;
+    CardView cvHistory;
+    CardView cvEditPassword;
+    CardView cvLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_new);
-//        init();
-//        setUpClick();
+        init();
+        setUpClick();
 //        loadFragment();
     }
 
     private void init(){
-
-        tabbar = findViewById(R.id.bottomBar);
-        btnnn = findViewById(R.id.btnnn);
+         cvStartQuiz = findViewById(R.id.cvStartQuiz);
+         cvRule = findViewById(R.id.cvRule);
+         cvHistory = findViewById(R.id.cvHistory);
+         cvEditPassword = findViewById(R.id.cvEditPassword);
+         cvLogout = findViewById(R.id.cvLogout);
+//        tabbar = findViewById(R.id.bottomBar);
+//        btnnn = findViewById(R.id.btnnn);
         Log.i("test", "test");
     }
 
     private void setUpClick(){
-        tabbar.setOnClickListener(new View.OnClickListener() {
+        cvStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,QuizOptionActivity.class));
+            }
+        });
+
+        cvRule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,RuleActivity.class));
+            }
+        });
+
+        cvHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,HistoryActivity.class));
+            }
+        });
+
+        cvEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,EditPasswordActivity.class));
+            }
+        });
+
+        cvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity(), LoginActivty.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
             }
         });
-
-
-
-//        tabbar.setOnItemSelectedListener(new OnItemSelectedListener() {
-//            @Override
-//            public boolean onItemSelect(int i) {
-//                Toast.makeText(MainActivity.this, "er"+i, Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        });
-
-        tabbar.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public boolean onItemSelect(int i) {
-                if (i == 0){
-                    final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frameLayout, new HomeFragment());
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }else if (i == 1){
-                    final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frameLayout, new HistoryFragment());
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }else if (i == 2){
-                    final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frameLayout, new SettingFragment());
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }
-                return false;
-            }
-        });
-
-
     }
 
     private  void loadFragment(){
