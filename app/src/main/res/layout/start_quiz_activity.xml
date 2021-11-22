@@ -27,13 +27,20 @@
                 android:id="@+id/discrete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recycler"
+                    />
+            </ScrollView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
                 <Button
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_marginEnd="5dp"

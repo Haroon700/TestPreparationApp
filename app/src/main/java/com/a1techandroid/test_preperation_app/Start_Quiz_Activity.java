@@ -31,6 +31,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.a1techandroid.test_preperation_app.Custom.NotificationService;
@@ -48,6 +50,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         String []answers;
         Toolbar toolbar;
         ScrollView scrollView;
+        RecyclerView recyclerView;
         LinearLayout indexLayout;
         GridView quesGrid;
         ArrayList<String> list;
@@ -76,29 +79,39 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
             scrollView = findViewById(R.id.discrete);
+            recyclerView = findViewById(R.id.recycler);
             questions = new ArrayList<>();
-            questions.add(new Question(1, "","","","","", ""));
-            questions.add(new Question(2, "","","","","", ""));
-            questions.add(new Question(3, "","","","","", ""));
-            questions.add(new Question(4, "","","","","", ""));
+            questions.add(new Question(1, "This is test","a","b","c","d", "clear"));
+            questions.add(new Question(2, "That","1","2","3","5", ""));
+            questions.add(new Question(3, "e","f","g","h","i", "j"));
+            questions.add(new Question(4, "k","l","l","m","", ""));
             questions.add(new Question(5, "","","","","", ""));
+            answers=new String[questions.size()];
+
             final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.setAdapter(questionAdapter);
+            questionAdapter.notifyDataSetChanged();
 //            scrollView.(questionAdapter);
             prev=findViewById(R.id.prev);
             next=findViewById(R.id.next);
             prev.setText("Submit");
             next.setText("Next");
-//            next.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if(scrollView.getCurrentItem()==questions.size()-1){
-//                        showPopUp();
-//                    }else {
-//                        //setNextPrevButton(scrollView.getCurrentItem() + 1);
-//                        scrollView.smo,othScrollToPosition(scrollView.getCurrentItem() + 1);
-//                    }
-//                }
-//            });
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    recyclerView.smoothScrollToPosition(questionAdapter.getCurrentItem() + 1);
+
+                    if(recyclerView.getChildCount()==questions.size()-1){
+                        showPopUp();
+                    }else {
+                        //setNextPrevButton(scrollView.getCurrentItem() + 1);
+//                        recyclerView.smoothScrollToPosition(questionAdapter.getCurrentItem() + 1);
+                    }
+                }
+            });
 
             prev=findViewById(R.id.prev);
 //            prev.setOnClickListener(new View.OnClickListener() {
@@ -344,7 +357,9 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
             QuestionAdapter(ArrayList<Question> data) {
                 this.data = data;
+                this.notifyDataSetChanged();
             }
+
 
 
             @Override
@@ -398,6 +413,24 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     }
                 });
 
+                holder.next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
+                    }
+                });
+
+                holder.prev.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (data.size() == position){
+
+                        }else {
+                            recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position-1);
+                        }
+                    }
+                });
+
 
                 if(answers[position]==null) {
                     holder.radioGroup.clearCheck();
@@ -423,6 +456,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 private  TextView questionText;
                 private RadioGroup radioGroup;
                 private RadioButton r1,r2,r3,r4,r5;
+                Button next, prev;
 
                 ViewHolder(View itemView) {
                     super(itemView);
@@ -433,6 +467,10 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     r3=itemView.findViewById(R.id.radioButton3);
                     r4=itemView.findViewById(R.id.radioButton4);
                     r5 = itemView.findViewById(R.id.radioButton5);
+                    next = itemView.findViewById(R.id.next);
+                    next.setText("Next");
+                    prev = itemView.findViewById(R.id.prev);
+                    prev.setText("Previous");
                 }
 
                 public void setOverlayColor(@ColorInt int color) {
