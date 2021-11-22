@@ -2,6 +2,7 @@ package com.a1techandroid.test_preperation_app.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.a1techandroid.test_preperation_app.LevelsActivity;
 import com.a1techandroid.test_preperation_app.MainGridModel;
 import com.a1techandroid.test_preperation_app.R;
 
@@ -58,6 +60,13 @@ public class GridAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.getContext().startActivity(new Intent(context, LevelsActivity.class));
+            }
+        });
 
         final MainGridModel events = list.get(position);
         viewHolder.text_cat.setText(events.getName());

@@ -91,9 +91,14 @@ public class LoginActivty extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spinKitView.setVisibility(View.VISIBLE);
-                spinKitView.animate();
-                login(etEmail.getText().toString(), etPassword.getText().toString());
+                if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
+                }else {
+                    spinKitView.setVisibility(View.VISIBLE);
+                    spinKitView.animate();
+                    login(etEmail.getText().toString(), etPassword.getText().toString());
+                }
+
             }
         });
 

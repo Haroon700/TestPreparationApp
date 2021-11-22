@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -53,14 +54,16 @@ public class MainActivity extends AppCompatActivity {
         cvStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this,QuizOptionActivity.class));
+                startActivity(new Intent(MainActivity.this,Start_Quiz_Activity.class));
             }
         });
 
         cvRule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this,RuleActivity.class));
+                startActivity(new Intent(MainActivity.this,TestMainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
             }
         });
 
@@ -74,25 +77,20 @@ public class MainActivity extends AppCompatActivity {
         cvEditPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this,EditPasswordActivity.class));
-            }
+                startActivity(new Intent(getApplicationContext(), UpdatePasswordActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                           }
         });
 
         cvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(), LoginActivty.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivty.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         });
     }
 
-    private  void loadFragment(){
-        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frameLayout, new HomeFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 }

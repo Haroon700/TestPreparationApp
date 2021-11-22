@@ -45,9 +45,13 @@ public class SignupActivty extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signUp(etEmail.getText().toString(), etPassword.getText().toString());
-                spinKitView.setVisibility(View.VISIBLE);
-                spinKitView.animate();
+                if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty()){
+                    Toast.makeText(SignupActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
+                }else {
+                    signUp(etEmail.getText().toString(), etPassword.getText().toString());
+                    spinKitView.setVisibility(View.VISIBLE);
+                    spinKitView.animate();
+                }
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {

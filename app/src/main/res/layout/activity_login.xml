@@ -235,7 +235,7 @@
         style="@style/SpinKitView.Large.DoubleBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:SpinKit_Color="@color/color9"
+        app:SpinKit_Color="@color/pending"
         tools:ignore="MissingConstraints"
         android:layout_centerInParent="true"/>
 

@@ -25,6 +25,11 @@
         <activity android:name=".LoginActivty"/>
         <activity android:name=".SignupActivty"/>
         <activity android:name=".ForgotPassword"/>
+        <activity android:name=".UpdatePasswordActivity"/>
+        <activity android:name=".TestMainActivity"/>
+        <activity android:name=".LevelsActivity"/>
+        <activity android:name=".Start_Quiz_Activity"/>
+        <activity android:name=".TestQuestionActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

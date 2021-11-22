@@ -21,22 +21,7 @@
         android:id="@+id/btnnn"
         android:visibility="gone"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/frameLayout"
-        android:layout_above="@+id/bottomBar"
-        />
 
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:backgroundColor="@color/color3"
-        app:menu="@menu/tab_menu"
-        android:layout_alignParentBottom="true"
-        tools:ignore="MissingConstraints"
-        android:visibility="visible"/>
 
 
 </RelativeLayout>
