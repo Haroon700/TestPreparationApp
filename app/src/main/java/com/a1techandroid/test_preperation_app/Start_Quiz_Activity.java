@@ -76,6 +76,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
             scrollView = findViewById(R.id.discrete);
+            questions.add(new Question(1, "","","","","", ""));
+            questions.add(new Question(2, "","","","","", ""));
+            questions.add(new Question(3, "","","","","", ""));
+            questions.add(new Question(4, "","","","","", ""));
+            questions.add(new Question(5, "","","","","", ""));
             final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
 //            scrollView.(questionAdapter);
             prev=findViewById(R.id.prev);

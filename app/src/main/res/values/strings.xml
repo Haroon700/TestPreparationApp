@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test_Preperation_App</string>
+    <string name="app_name">ISSB_Test_Preperation_App</string>
     <string name="facebook_app_id">914410442819218</string>
     <string name="fb_login_protocol_scheme">fb914410442819218</string>
 </resources>
