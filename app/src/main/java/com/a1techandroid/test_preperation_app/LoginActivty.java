@@ -45,6 +45,8 @@ import com.facebook.appevents.AppEventsLogger;
 
 import java.util.Arrays;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class LoginActivty extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -92,7 +94,7 @@ public class LoginActivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
+                    Toasty.error(getApplicationContext(), "Please Enter Your Credentials", Toast.LENGTH_SHORT, true).show();
                 }else {
                     spinKitView.setVisibility(View.VISIBLE);
                     spinKitView.animate();
@@ -139,12 +141,15 @@ public class LoginActivty extends AppCompatActivity {
                         spinKitView.clearAnimation();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            Toasty.success(getApplicationContext(), "Successfully Login!", Toast.LENGTH_SHORT, true).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
+                            Toasty.error(getApplicationContext(), "Authentication Field", Toast.LENGTH_SHORT, true).show();
+
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivty.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(LoginActivty.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

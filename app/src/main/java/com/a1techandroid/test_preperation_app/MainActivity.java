@@ -1,5 +1,7 @@
 package com.a1techandroid.test_preperation_app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +14,18 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
 
-
+import com.a1techandroid.test_preperation_app.Adapter.SliderAdapter;
+import com.a1techandroid.test_preperation_app.Custom.SliderItem;
 import com.a1techandroid.test_preperation_app.Fragments.HistoryFragment;
 import com.a1techandroid.test_preperation_app.Fragments.HomeFragment;
 import com.a1techandroid.test_preperation_app.Fragments.SettingFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
+
+import java.util.ArrayList;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -47,7 +55,18 @@ public class MainActivity extends AppCompatActivity {
          cvLogout = findViewById(R.id.cvLogout);
 //        tabbar = findViewById(R.id.bottomBar);
 //        btnnn = findViewById(R.id.btnnn);
-        Log.i("test", "test");
+        ArrayList<SliderItem> sliderItems = new ArrayList<>();
+        sliderItems.add(new SliderItem("Army",getApplicationContext().getResources().getDrawable(R.drawable.army)));
+        sliderItems.add(new SliderItem("Navy",getApplicationContext().getResources().getDrawable(R.drawable.navy)));
+        sliderItems.add(new SliderItem("AirForce",getApplicationContext().getResources().getDrawable(R.drawable.airforce)));
+        SliderView sliderView = findViewById(R.id.imageSlider);
+        sliderView.setSliderAdapter(new SliderAdapter(getApplicationContext(), sliderItems));
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.startAutoCycle();
+
+//        sliderView.notifyAll();
+        Log.i(  "test", "test");
     }
 
     private void setUpClick(){
@@ -85,12 +104,34 @@ public class MainActivity extends AppCompatActivity {
         cvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showPopUp();
+            }
+        });
+    }
+
+    void showPopUp(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Want to logout");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), LoginActivty.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
+
     }
+
 
 }

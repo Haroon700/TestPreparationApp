@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import es.dmoral.toasty.Toasty;
+
 public class SignupActivty extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText etEmail, etPassword;
@@ -46,7 +48,8 @@ public class SignupActivty extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (etEmail.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty()){
-                    Toast.makeText(SignupActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
+                    Toasty.error(getApplicationContext(), "Please Enter Your Credentials", Toast.LENGTH_SHORT, true).show();
+//                    Toast.makeText(SignupActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
                 }else {
                     signUp(etEmail.getText().toString(), etPassword.getText().toString());
                     spinKitView.setVisibility(View.VISIBLE);
@@ -72,14 +75,17 @@ public class SignupActivty extends AppCompatActivity {
                         spinKitView.setVisibility(View.INVISIBLE);
                         spinKitView.clearAnimation();
                         if (task.isSuccessful()) {
+                            Toasty.success(getApplicationContext(), "Successfully Signup!", Toast.LENGTH_SHORT, true).show();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
                         } else {
+                            Toasty.error(getApplicationContext(), "Authentication Field", Toast.LENGTH_SHORT, true).show();
+
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(SignupActivty.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(SignupActivty.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -88,7 +94,7 @@ public class SignupActivty extends AppCompatActivity {
     }
 
     private void updateUI(Object o) {
-        Intent i = new Intent(SignupActivty.this, MainActivity.class);
+        Intent i = new Intent(SignupActivty.this, LoginActivty.class);
         startActivity(i);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
