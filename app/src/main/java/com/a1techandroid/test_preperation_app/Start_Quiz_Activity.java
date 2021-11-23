@@ -78,14 +78,14 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 //            answers=new String[questions.size()];
             setSupportActionBar(toolbar);
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
-            scrollView = findViewById(R.id.discrete);
+//            scrollView = findViewById(R.id.discrete);
             recyclerView = findViewById(R.id.recycler);
             questions = new ArrayList<>();
-            questions.add(new Question(1, "This is test","a","b","c","d", "clear"));
-            questions.add(new Question(2, "That","1","2","3","5", ""));
-            questions.add(new Question(3, "e","f","g","h","i", "j"));
-            questions.add(new Question(4, "k","l","l","m","", ""));
-            questions.add(new Question(5, "","","","","", ""));
+            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
+            questions.add(new Question(2, "Camera is to photographer as _____ Is to the soldier","Lens","Enemy","Photo","Gun", "clear answer"));
+            questions.add(new Question(3, "Complete the series","6","5","12","10", "clear answer"));
+            questions.add(new Question(4, "Which choice answers the following question? Islamabad is famous because:","It is a very clear city","Numerous foreigners live in it","The President lives in it","It is the capital of Pakistan", "clear answer"));
+            questions.add(new Question(5, "","","","","", "clear answer"));
             answers=new String[questions.size()];
 
             final QuestionAdapter questionAdapter=new QuestionAdapter(questions);

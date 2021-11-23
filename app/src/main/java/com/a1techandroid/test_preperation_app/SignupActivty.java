@@ -2,8 +2,11 @@ package com.a1techandroid.test_preperation_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,21 +48,33 @@ public class SignupActivty extends AppCompatActivity {
         spinKitView =  findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.INVISIBLE);
 
-//        etFirstName.setFilters(new InputFilter[] {
-//                new InputFilter() {
-//                    public CharSequence filter(CharSequence src, int start,
-//                                               int end, Spanned dst, int dstart, int dend) {
-//                        if(src.equals("")){ // for backspace
-//                            return src;
-//                            Toast.makeText(SignupActivty.this, "enter", Toast.LENGTH_SHORT).show();
-//                        }
-//                        if(src.toString().matches("[a-zA-Z ]+")){
-//                            return src;
-//                        }
-//                        return etFirstName.getText().toString();
-//                    }
+        etFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+               if (s.toString().contains("0123456789")){
+                   Toast.makeText(SignupActivty.this, "Numbers are not allowed", Toast.LENGTH_SHORT).show();
+               }
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String location_name=s.toString();
+
+//                if (location_name.matches(".*[^a-z^].*")) {
+//                    location_name = location_name.replaceAll("[^a-z^0-9]", "");
+//                    etFirstName.clearComposingText();
+//                    Toast.makeText(getApplicationContext(),"Only lowercase letters and numbers are allowed!",Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"Only ",Toast.LENGTH_SHORT).show();
+//
 //                }
-//        });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.i("textBefore","");
+            }
+        });
+
     }
 
     private void setUpClick(){
