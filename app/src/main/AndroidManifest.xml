@@ -23,6 +23,7 @@
 
         </activity>
         <activity android:name=".LoginActivty"/>
+        <activity android:name=".LevelOneActivity"/>
         <activity android:name=".SignupActivty"/>
         <activity android:name=".ForgotPassword"/>
         <activity android:name=".UpdatePasswordActivity"/>

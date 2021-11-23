@@ -2,6 +2,7 @@ package com.a1techandroid.test_preperation_app.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.a1techandroid.test_preperation_app.LevelOneActivity;
 import com.a1techandroid.test_preperation_app.R;
 
 import java.util.ArrayList;
@@ -50,7 +52,14 @@ public class LevelAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
 
             viewHolder.text_cat = convertView.findViewById(R.id.txt_level);
-
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, LevelOneActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    v.getContext().startActivity(intent);
+                }
+            });
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

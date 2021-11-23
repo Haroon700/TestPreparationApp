@@ -47,17 +47,17 @@ import java.util.concurrent.TimeUnit;
 public class Start_Quiz_Activity extends AppCompatActivity {
 
         ArrayList<Question> questions;
-        String []answers;
+       static String []answers;
         Toolbar toolbar;
         ScrollView scrollView;
-        RecyclerView recyclerView;
+       static RecyclerView recyclerView;
         LinearLayout indexLayout;
         GridView quesGrid;
         ArrayList<String> list;
         ArrayList<String> arrayList;
         int flag_controller = 1;
         long timer;// =((Test) getIntent().getExtras().get("Questions")).getTime()*60*1000;
-        popGridAdapter popGrid;
+        static popGridAdapter popGrid;
         Button next,prev;
         TextView textView;
 //        private DatabaseReference mDatabase;
@@ -355,12 +355,12 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             }else slideUp(indexLayout);
         }
 
-        class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
+       public static class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
 
             private int itemHeight;
             private ArrayList<Question> data;
 
-            QuestionAdapter(ArrayList<Question> data) {
+            public QuestionAdapter(ArrayList<Question> data) {
                 this.data = data;
                 this.notifyDataSetChanged();
             }
@@ -397,6 +397,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 holder.r4.setText(data.get(position).getOpt_D());
                 holder.r5.setText("Clear Selected");
 
+
                 holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -414,7 +415,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                             holder.radioGroup.clearCheck();
                             answers[position] = null;
                         }
-                        popGrid.notifyDataSetChanged();
+//                        popGrid.notifyDataSetChanged();
                     }
                 });
 
@@ -436,7 +437,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     }
                 });
 
-
+                answers=new String[data.size()];
                 if(answers[position]==null) {
                     holder.radioGroup.clearCheck();
                 }else if(answers[position].equals("A")) {
