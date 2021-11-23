@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
 //        tabbar = findViewById(R.id.bottomBar);
 //        btnnn = findViewById(R.id.btnnn);
         ArrayList<SliderItem> sliderItems = new ArrayList<>();
+        sliderItems.add(new SliderItem("",getApplicationContext().getResources().getDrawable(R.drawable.issbbb)));
+        sliderItems.add(new SliderItem("",getApplicationContext().getResources().getDrawable(R.drawable.issb2)));
+        sliderItems.add(new SliderItem("",getApplicationContext().getResources().getDrawable(R.drawable.issb3)));
+        sliderItems.add(new SliderItem("",getApplicationContext().getResources().getDrawable(R.drawable.issb4)));
         sliderItems.add(new SliderItem("Army",getApplicationContext().getResources().getDrawable(R.drawable.army)));
         sliderItems.add(new SliderItem("Navy",getApplicationContext().getResources().getDrawable(R.drawable.navy)));
         sliderItems.add(new SliderItem("AirForce",getApplicationContext().getResources().getDrawable(R.drawable.airforce)));
