@@ -25,11 +25,9 @@ public class LevelsActivity extends AppCompatActivity {
 
     private void loadData() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("Level 1");
-        list.add("Level 2");
-        list.add("Level 3");
-        list.add("Level 4");
-        list.add("Level 5");
+        list.add("Easy");
+        list.add("Medium");
+        list.add("Hard");
         levelAdapter= new LevelAdapter(getApplicationContext(), list);
         listViewOption.setAdapter(levelAdapter);
         levelAdapter.notifyDataSetChanged();

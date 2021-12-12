@@ -95,7 +95,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
             final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+            recyclerView.stopNestedScroll();
 //        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+            recyclerView.setNestedScrollingEnabled(false);
+            recyclerView.suppressLayout(false);
+
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(questionAdapter);
             questionAdapter.notifyDataSetChanged();

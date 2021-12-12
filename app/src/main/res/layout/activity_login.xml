@@ -124,7 +124,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/rounded_corner"
             android:text="LOGIN"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             />
 
         <com.facebook.login.widget.LoginButton
@@ -139,7 +139,7 @@
             android:layout_marginRight="16dp"
             android:layout_below="@+id/b_login"
             android:background="@drawable/rounded_corner"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             />
 
         <RelativeLayout

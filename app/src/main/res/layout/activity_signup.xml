@@ -150,7 +150,7 @@
             android:layout_marginRight="16dp"
             android:background="@drawable/rounded_corner"
             android:text="Sign Up"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:clickable="false" />
 
         <LinearLayout

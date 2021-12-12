@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color9"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -17,7 +17,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:text="Home"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         style="@style/titleTextStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
