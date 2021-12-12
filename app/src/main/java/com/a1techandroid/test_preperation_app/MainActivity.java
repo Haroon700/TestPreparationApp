@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         cvRule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,TestMainActivity.class));
+                startActivity(new Intent(MainActivity.this,TestSection.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         cvHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this,HistoryActivity.class));
+                startActivity(new Intent(MainActivity.this,VideoPlayer.class));
             }
         });
 

@@ -57,6 +57,7 @@ public class LevelAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, LevelOneActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("level",position);
                     v.getContext().startActivity(intent);
                 }
             });

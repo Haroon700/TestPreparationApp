@@ -16,12 +16,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.a1techandroid.test_preperation_app.Custom.UserModel;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.safetynet.SafetyNet;
+import com.google.android.gms.safetynet.SafetyNetApi;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 import es.dmoral.toasty.Toasty;
 
@@ -31,11 +40,15 @@ public class SignupActivty extends AppCompatActivity {
     private Button signUpButton;
     private TextView btnLogin;
     SpinKitView spinKitView;
+    DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users");
         init();
         setUpClick();
     }
@@ -85,9 +98,7 @@ public class SignupActivty extends AppCompatActivity {
                     Toasty.error(getApplicationContext(), "Please Enter Your Credentials", Toast.LENGTH_SHORT, true).show();
 //                    Toast.makeText(SignupActivty.this, "Please Enter Your Credentials", Toast.LENGTH_SHORT).show();
                 }else {
-                    signUp(etEmail.getText().toString(), etPassword.getText().toString());
-                    spinKitView.setVisibility(View.VISIBLE);
-                    spinKitView.animate();
+                   captchaFunction();
                 }
             }
         });
@@ -109,6 +120,8 @@ public class SignupActivty extends AppCompatActivity {
                         spinKitView.setVisibility(View.INVISIBLE);
                         spinKitView.clearAnimation();
                         if (task.isSuccessful()) {
+                            UserModel userModel = new UserModel(etFirstName.getText().toString(), email);
+                            myRef.push().setValue(userModel);
                             Toasty.success(getApplicationContext(), "Successfully Signup!", Toast.LENGTH_SHORT, true).show();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -132,5 +145,77 @@ public class SignupActivty extends AppCompatActivity {
         startActivity(i);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
+    }
+
+    public  void captchaFunction(){
+//        SafetyNet.getClient(this).verifyWithRecaptcha("6LehQZgdAAAAAN2U3IbDVw6Uytn7lw3YOcxvLMuq")
+//                .addOnSuccessListener((Executor) this,
+//                        new OnSuccessListener<SafetyNetApi.RecaptchaTokenResponse>() {
+//                            @Override
+//                            public void onSuccess(SafetyNetApi.RecaptchaTokenResponse response) {
+//                                // Indicates communication with reCAPTCHA service was
+//                                // successful.
+//                                String userResponseToken = response.getTokenResult();
+//                                if (!userResponseToken.isEmpty()) {
+//                                    // Validate the user response token using the
+//                                    // reCAPTCHA siteverify API.
+//
+//                                    Toasty.success(SignupActivty.this, "Success");
+//                                    signUp(etEmail.getText().toString(), etPassword.getText().toString());
+//                                    spinKitView.setVisibility(View.VISIBLE);
+//                                    spinKitView.animate();
+//                                }
+//                            }
+//                        })
+//                .addOnFailureListener((Executor) this, new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        if (e instanceof ApiException) {
+//                            // An error occurred when communicating with the
+//                            // reCAPTCHA service. Refer to the status code to
+//                            // handle the error appropriately.
+//                            ApiException apiException = (ApiException) e;
+//                            int statusCode = apiException.getStatusCode();
+//                            Toasty.error(SignupActivty.this, "Something went wrong");
+//
+//                        } else {
+//                            // A different, unknown type of error occurred.
+//                            Toasty.error(SignupActivty.this, "Something went wrong");
+//                        }
+//                    }
+//                });
+
+        SafetyNet.getClient(this).verifyWithRecaptcha("6LehQZgdAAAAAN2U3IbDVw6Uytn7lw3YOcxvLMuq")
+                .addOnSuccessListener(new OnSuccessListener<SafetyNetApi.RecaptchaTokenResponse>() {
+                    @Override
+                    public void onSuccess(@NonNull SafetyNetApi.RecaptchaTokenResponse recaptchaTokenResponse) {
+                        String userResponseToken = recaptchaTokenResponse.getTokenResult();
+                        if (!userResponseToken.isEmpty()) {
+                            // Validate the user response token using the
+                            // reCAPTCHA siteverify API.
+
+                            Toasty.success(SignupActivty.this, "Success");
+                            signUp(etEmail.getText().toString(), etPassword.getText().toString());
+                            spinKitView.setVisibility(View.VISIBLE);
+                            spinKitView.animate();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ApiException) {
+                    // An error occurred when communicating with the
+                    // reCAPTCHA service. Refer to the status code to
+                    // handle the error appropriately.
+                    ApiException apiException = (ApiException) e;
+                    int statusCode = apiException.getStatusCode();
+                    Toasty.error(SignupActivty.this, "Something went wrong");
+
+                } else {
+                    // A different, unknown type of error occurred.
+                    Toasty.error(SignupActivty.this, "Something went wrong");
+                }
+            }
+        });
     }
 }

@@ -31,6 +31,9 @@
         <activity android:name=".LevelsActivity"/>
         <activity android:name=".Start_Quiz_Activity"/>
         <activity android:name=".TestQuestionActivity"/>
+        <activity android:name=".VideoPlayer"/>
+        <activity android:name=".VideoListView"/>
+        <activity android:name=".TestSection"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ package com.a1techandroid.test_preperation_app;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,6 +40,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.a1techandroid.test_preperation_app.Custom.NotificationService;
 import com.a1techandroid.test_preperation_app.Custom.Question;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +63,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         ArrayList<String> list;
         ArrayList<String> arrayList;
         int flag_controller = 1;
-        long timer;// =((Test) getIntent().getExtras().get("Questions")).getTime()*60*1000;
+        static long timer;// =((Test) getIntent().getExtras().get("Questions")).getTime()*60*1000;
         static popGridAdapter popGrid;
         Button next,prev;
         TextView textView;
@@ -65,12 +72,19 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         private String TESTNAME;
         private RadioGroup group;
         private int countPaused = 0;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 //            mDatabase = FirebaseDatabase.getInstance().getReference();
             auth= FirebaseAuth.getInstance();
             setContentView(R.layout.start_quiz_activity);
+
+            database = FirebaseDatabase.getInstance();
+//            myRef = database.getReference("Question");
+            myRef = database.getReference("StartQuiz");
+
 //            questions=((Test) getIntent().getExtras().get("Questions")).getQuestions();
 //            TESTNAME = (String) getIntent().getExtras().get("TESTNAME");
             toolbar=findViewById(R.id.toolbar);
@@ -80,29 +94,30 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
 //            scrollView = findViewById(R.id.discrete);
             recyclerView = findViewById(R.id.recycler);
+            retrieveData();
             questions = new ArrayList<>();
-            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
-            questions.add(new Question(2, "Camera is to photographer as _____ Is to the soldier","Lens","Enemy","Photo","Gun", "clear answer"));
-            questions.add(new Question(3, "Complete the series","6","5","12","10", "clear answer"));
-            questions.add(new Question(4, "Which choice answers the following question? Islamabad is famous because:","It is a very clear city","Numerous foreigners live in it","The President lives in it","It is the capital of Pakistan", "clear answer"));
-            questions.add(new Question(5, "Which country of the South America is known as ‘Granary of Europe’","Chile","Argentina","Brazil","Peru", "clear answer"));
-            questions.add(new Question(6, "Which Asian country is home to the most nuclear power plants","China","South Korea","Taiwan","None of these", "clear answer"));
-            questions.add(new Question(7, "How many U.S. states border the Pacific Ocean","Four","Three","Five","Seven", "clear answer"));
-            questions.add(new Question(8, "Mojave Desert desert is located in","Afghanistan","India","Australia","USA", "clear answer"));
-            questions.add(new Question(9, "The creator of the popular numbers puzzle Sudoku","Maki Kaji","Shinzo Teng","Mami Suzuki","Hiroko Akutsu", "clear answer"));
-            questions.add(new Question(10, "What is the new name of the island of Madagascar","Haitti","Malagasy","Mozambique","Maputo", "clear answer"));
+//            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
+//            questions.add(new Question(2, "Camera is to photographer as _____ Is to the soldier","Lens","Enemy","Photo","Gun", "clear answer"));
+//            questions.add(new Question(3, "Complete the series","6","5","12","10", "clear answer"));
+//            questions.add(new Question(4, "Which choice answers the following question? Islamabad is famous because:","It is a very clear city","Numerous foreigners live in it","The President lives in it","It is the capital of Pakistan", "clear answer"));
+//            questions.add(new Question(5, "Which country of the South America is known as ‘Granary of Europe’","Chile","Argentina","Brazil","Peru", "clear answer"));
+//            questions.add(new Question(6, "Which Asian country is home to the most nuclear power plants","China","South Korea","Taiwan","None of these", "clear answer"));
+//            questions.add(new Question(7, "How many U.S. states border the Pacific Ocean","Four","Three","Five","Seven", "clear answer"));
+//            questions.add(new Question(8, "Mojave Desert desert is located in","Afghanistan","India","Australia","USA", "clear answer"));
+//            questions.add(new Question(9, "The creator of the popular numbers puzzle Sudoku","Maki Kaji","Shinzo Teng","Mami Suzuki","Hiroko Akutsu", "clear answer"));
+//            questions.add(new Question(10, "What is the new name of the island of Madagascar","Haitti","Malagasy","Mozambique","Maputo", "clear answer"));
             answers=new String[questions.size()];
 
-            final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-            recyclerView.stopNestedScroll();
-//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-            recyclerView.setNestedScrollingEnabled(false);
-            recyclerView.suppressLayout(false);
-
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(questionAdapter);
-            questionAdapter.notifyDataSetChanged();
+//            final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+//            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+//            recyclerView.stopNestedScroll();
+////        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+//            recyclerView.setNestedScrollingEnabled(false);
+//            recyclerView.suppressLayout(false);
+//
+//            recyclerView.setItemAnimator(new DefaultItemAnimator());
+//            recyclerView.setAdapter(questionAdapter);
+//            questionAdapter.notifyDataSetChanged();
 //            scrollView.(questionAdapter);
             prev=findViewById(R.id.prev);
             next=findViewById(R.id.next);
@@ -387,7 +402,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 View v = inflater.inflate(R.layout.frag_test, parent, false);
                 ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        itemHeight);
+                        ViewGroup.LayoutParams.MATCH_PARENT);
                 v.setLayoutParams(params);
                 return new ViewHolder(v);
             }
@@ -406,6 +421,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
                         final int selectedId = holder.radioGroup.getCheckedRadioButtonId();
+                        timer=60*1000;
                         if(i==R.id.radioButton){
                             answers[position]="A";
                         }  else if(i==R.id.radioButton2){
@@ -582,4 +598,36 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             submit();
             super.onDestroy();
         }
+
+    public void retrieveData(){
+        ProgressDialog progressDialog = new ProgressDialog(Start_Quiz_Activity.this);
+        progressDialog.setMessage("Getting");
+        progressDialog.show();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressDialog.hide();
+                for (DataSnapshot dss: snapshot.getChildren()){
+                    Question question = dss.getValue(Question.class);
+                    questions.add(question);
+                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recyclerView.stopNestedScroll();
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+                    recyclerView.setNestedScrollingEnabled(false);
+                    recyclerView.suppressLayout(false);
+
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(questionAdapter);
+                    questionAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                progressDialog.hide();
+                Toast.makeText(Start_Quiz_Activity.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     }

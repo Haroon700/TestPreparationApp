@@ -153,6 +153,7 @@
             android:textColor="@color/white"
             android:clickable="false" />
 
+
         <LinearLayout
             android:id="@+id/already_account_layout"
             android:layout_width="wrap_content"
