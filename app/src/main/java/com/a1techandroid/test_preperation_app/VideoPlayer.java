@@ -32,6 +32,8 @@ public class VideoPlayer extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("History");
 
+        // rtrdy
+
     }
 
 }
