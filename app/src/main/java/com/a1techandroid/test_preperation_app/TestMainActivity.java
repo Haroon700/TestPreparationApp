@@ -68,6 +68,8 @@ public class TestMainActivity extends AppCompatActivity {
         recyclerView.setAdapter(dynamicFieldAdapter);
         dynamicFieldAdapter.notifyDataSetChanged();
 
+
+
 //        StaggeredGridLayoutManager lm =
 //                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 //        recyclerView.setLayoutManager(lm);

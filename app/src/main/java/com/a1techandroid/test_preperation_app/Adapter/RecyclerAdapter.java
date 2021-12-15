@@ -1,5 +1,6 @@
 package com.a1techandroid.test_preperation_app.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.a1techandroid.test_preperation_app.Common;
 import com.a1techandroid.test_preperation_app.Fragments.HomeFragment;
 import com.a1techandroid.test_preperation_app.Fragments.OptionDetailFragment;
 import com.a1techandroid.test_preperation_app.LevelsActivity;
@@ -69,12 +71,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.main_category, parent, false);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               v.getContext().startActivity(new Intent(context, LevelsActivity.class));
-            }
-        });
+
         return new MyViewHolder(itemView);
     }
 
@@ -85,6 +82,23 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
             holder.name.setText(dynamicFieldModel.getName());
             holder.img.setImageDrawable(dynamicFieldModel.getImage());
 
+            holder.img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int item = position;
+                    if (position == 0){
+                        Common.setForceType("army", context);
+
+                    }else if (position == 1){
+                        Common.setForceType("navy", context);
+
+                    }else if (position == 2){
+                        Common.setForceType("air", context);
+
+                    }
+                    view.getContext().startActivity(new Intent(context, LevelsActivity.class));
+                }
+            });
 
         }catch (Exception ex){}
     }
@@ -94,4 +108,8 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
         return fieldName.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+            return super.getItemId(position);
+    }
 }

@@ -3,13 +3,16 @@ package com.a1techandroid.test_preperation_app.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.a1techandroid.test_preperation_app.Common;
 import com.a1techandroid.test_preperation_app.LevelsActivity;
 import com.a1techandroid.test_preperation_app.MainGridModel;
 import com.a1techandroid.test_preperation_app.R;
@@ -64,6 +67,16 @@ public class GridAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (position == 0){
+                    Common.setForceType("army", context);
+
+                }else if (position == 1){
+                    Common.setForceType("navy", context);
+
+                }else if (position == 2){
+                    Common.setForceType("air", context);
+
+                }
                 v.getContext().startActivity(new Intent(context, LevelsActivity.class));
             }
         });

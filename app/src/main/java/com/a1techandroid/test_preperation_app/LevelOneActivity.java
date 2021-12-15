@@ -35,17 +35,46 @@ public class LevelOneActivity extends AppCompatActivity {
         setContentView(R.layout.level_one_activity);
         type = getIntent().getIntExtra("level",0);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        if (type == 0){
-            myRef = database.getReference("Question").child("Easy");
-            retrieveData();
-        }else if (type == 1){
-            myRef = database.getReference("Question").child("Medium");
-            retrieveData();
-        }else if(type == 2){
-            myRef = database.getReference("Question").child("Hard");
-            retrieveData();
+        String type1 = Common.getForceType(getApplicationContext());
+        switch (type1){
+            case "army":
+                if (type == 0){
+                    myRef = database.getReference("Question").child("Easy");
+                    retrieveData();
+                }else if (type == 1){
+                    myRef = database.getReference("Question").child("Medium");
+                    retrieveData();
+                }else if(type == 2){
+                    myRef = database.getReference("Question").child("Hard");
+                    retrieveData();
+                }
+                break;
+            case "navy":
+                if (type == 0){
+                    myRef = database.getReference("Question1").child("Navy").child("Easy");
+                    retrieveData();
+                }else if (type == 1){
+                    myRef = database.getReference("Question1").child("Navy").child("Medium");
+                    retrieveData();
+                }else if(type == 2){
+                    myRef = database.getReference("Question1").child("Navy").child("Hard");
+                    retrieveData();
+                }
+                break;
+            case "air":
+                if (type == 0){
+                    myRef = database.getReference("Question1").child("Air").child("Easy");
+                    retrieveData();
+                }else if (type == 1){
+                    myRef = database.getReference("Question1").child("Air").child("Medium");
+                    retrieveData();
+                }else if(type == 2){
+                    myRef = database.getReference("Question1").child("Air").child("Hard");
+                    retrieveData();
+                }
+                break;
         }
+
         initView();
         loadData();
     }
