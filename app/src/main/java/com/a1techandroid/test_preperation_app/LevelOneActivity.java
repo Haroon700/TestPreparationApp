@@ -110,6 +110,7 @@ public class LevelOneActivity extends AppCompatActivity {
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(questionAdapter);
                     questionAdapter.notifyDataSetChanged();
+
                 }
             }
 

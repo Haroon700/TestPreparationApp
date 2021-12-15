@@ -55,12 +55,12 @@ public class SplashActivity extends AppCompatActivity {
 
     public void saveData(){
         ArrayList<Question> questions = new ArrayList<>();
-        questions.add(new Question(1, "First-ever Female as Colonel Commandant of Army Medical College is","18","6","3","0", "clear answer"));
-        questions.add(new Question(2, "Camera is to photographer as _____ Is to the soldier","Lens","Enemy","Photo","Gun", "clear answer"));
-        questions.add(new Question(3, "Complete the series","6","5","12","10", "clear answer"));
-        questions.add(new Question(4, "Which choice answers the following question? Islamabad is famous because:","It is a very clear city","Numerous foreigners live in it","The President lives in it","It is the capital of Pakistan", "clear answer"));
-        questions.add(new Question(5, "Which country of the South America is known as ‘Granary of Europe’","Chile","Argentina","Brazil","Peru", "clear answer"));
-        questions.add(new Question(6, "Which Asian country is home to the most nuclear power plants","China","South Korea","Taiwan","None of these", "clear answer"));
+        questions.add(new Question(1, "The latest version of Hatf-5 is","Ghauri-1","Hataf","Abdali","Shaheen", "clear answer"));
+        questions.add(new Question(2, "Zafar Ahmed Chaudhry was the first Chief of Air Staff of ","Pak Army","Air Force","Navy","None of them", "clear answer"));
+        questions.add(new Question(3, "Frank Meseri was the first C-in-C of"," Pak Army","Air Force","Navy","None of them", "clear answer"));
+        questions.add(new Question(4, "Urdu is a word of Turkish language, it means","IWth","Arms","Army","Literature", "clear answer"));
+        questions.add(new Question(5, "The Supreme commander of Pakistan Armed Forces is?","Army Chief","Prime Minister","President","Governor", "clear answer"));
+        questions.add(new Question(6, "Article 58(2b) of constitution 1973 is about","Power of President to dismiss Army Chief","Power of President to dissolve Provincial Assemblies","Power of President to dissolve National Assembly","Power of President to dissolve Senate", "clear answer"));
         questions.add(new Question(7, "How many U.S. states border the Pacific Ocean","Four","Three","Five","Seven", "clear answer"));
         questions.add(new Question(8, "Mojave Desert desert is located in","Afghanistan","India","Australia","USA", "clear answer"));
         questions.add(new Question(9, "The creator of the popular numbers puzzle Sudoku","Maki Kaji","Shinzo Teng","Mami Suzuki","Hiroko Akutsu", "clear answer"));

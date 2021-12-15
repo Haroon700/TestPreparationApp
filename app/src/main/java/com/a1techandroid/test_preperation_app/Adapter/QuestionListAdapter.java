@@ -14,20 +14,30 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a1techandroid.test_preperation_app.Custom.HistoryModel;
 import com.a1techandroid.test_preperation_app.Custom.Question;
 import com.a1techandroid.test_preperation_app.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapter.ViewHolder> {
 
     private int itemHeight;
     private ArrayList<Question> data;
     Context context;
+    DatabaseReference myRef;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     public QuestionListAdapter(Context context, ArrayList<Question> data) {
+        myRef = database.getReference("History");
         this.data = data;
         this.context = context;
         this.notifyDataSetChanged();
@@ -64,7 +74,15 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         int index = position + 1;
         holder.number.setText(index+": ");
 
+        if (position == data.size()-1){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Date date = new Date();
+            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+            String dateStr =  dateFormat.format(date);
+            HistoryModel model = new HistoryModel(user.getEmail(),dateStr,"Attempt","1");
+            myRef.child(user.getEmail().replace(".","")).push().setValue(model);
 
+        }
 
 
     }
