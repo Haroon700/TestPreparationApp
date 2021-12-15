@@ -40,4 +40,8 @@ public class VideoPlayer extends AppCompatActivity {
         // this is for git test
     }
 
+    public void testForGEt(){
+        // this is test
+    }
+
 }
