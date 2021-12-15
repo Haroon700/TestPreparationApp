@@ -3,6 +3,7 @@ package com.a1techandroid.test_preperation_app;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -42,6 +43,7 @@ public class VideoPlayer extends AppCompatActivity {
 
     public void testForGEt(){
         // this is test
+        Log.d("test","");
     }
 
 }
