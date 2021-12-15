@@ -156,7 +156,7 @@ public class LoginActivty extends AppCompatActivity {
     }
 
     private void updateUI(Object o) {
-        Intent i = new Intent(LoginActivty.this, MainActivity.class);
+        Intent i = new Intent(LoginActivty.this, MainActivityNew.class);
         startActivity(i);
         finish();
     }

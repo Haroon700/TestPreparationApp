@@ -34,6 +34,7 @@
         <activity android:name=".VideoPlayer"/>
         <activity android:name=".VideoListView"/>
         <activity android:name=".TestSection"/>
+        <activity android:name=".MainActivityNew"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

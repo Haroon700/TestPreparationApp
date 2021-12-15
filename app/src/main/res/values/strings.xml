@@ -2,4 +2,10 @@
     <string name="app_name">ISSB_Test_Preperation_App</string>
     <string name="facebook_app_id">914410442819218</string>
     <string name="fb_login_protocol_scheme">fb914410442819218</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="about_app">ISSB Test Preparation Android Application is provide guidance to student for preparing ISSB test. In this we will provide multiple level question so they can prepare easily. First, they started from easy level when they complete then student goes on next level. In this app every level a number of questions from different subjects and general knowledge. So, user can easily prepare himself for ISSB test.Our main purpose is ready to student for ISSB test and help them to achieving goals. So, for this we are developing this project. Our goal of this project is provide updated syllabus to ISSB test preparation students.
+	The main intention of developing this application is to save student time.
+	Also prepare for test mentally and physical also.
+ </string>
 </resources>
