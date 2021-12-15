@@ -82,7 +82,7 @@ public class MainActivityNew extends AppCompatActivity implements NavigationView
 
     private void initializeDefaultFragment(Bundle savedInstanceState, int itemIndex){
         if (savedInstanceState == null){
-            MenuItem menuItem = navigationView.getMenu().getItem(itemIndex).setChecked(true);
+            MenuItem menuItem = navigationView.getMenu().getItem(itemIndex);
             onNavigationItemSelected(menuItem);
         }
     }

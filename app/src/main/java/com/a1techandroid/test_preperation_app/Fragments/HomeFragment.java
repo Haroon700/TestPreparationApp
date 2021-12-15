@@ -106,8 +106,8 @@ public class HomeFragment extends Fragment {
         cvHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), VideoPlayer.class));
-            }
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HistoryFragment())
+                        .commit();            }
         });
 
         cvEditPassword.setOnClickListener(new View.OnClickListener() {

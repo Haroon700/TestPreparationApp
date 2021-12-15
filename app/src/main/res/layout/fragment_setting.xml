@@ -100,7 +100,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/rounded_rect"
-            android:backgroundTint="@color/color3"
+            android:backgroundTint="@color/color9"
             android:id="@+id/changePAssword"
             />
 
@@ -112,7 +112,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_rect"
-            android:backgroundTint="@color/color3"
+            android:backgroundTint="@color/color9"
             android:id="@+id/signOut"
             />
 

@@ -58,8 +58,11 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
         holder.questionText.setText(data.get(position).getQuestion());
         holder.answer.setText(data.get(position).getAnswer());
+        int index = position + 1;
+        holder.number.setText(index+": ");
 
 
 
@@ -74,13 +77,14 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private View overlay;
-        private TextView questionText, answer;
+        private TextView questionText, answer, number;
 
 
         ViewHolder(View itemView) {
             super(itemView);
             questionText =  itemView.findViewById(R.id.questionTextView);
             answer=itemView.findViewById(R.id.answer);
+            number=itemView.findViewById(R.id.number);
 
         }
 

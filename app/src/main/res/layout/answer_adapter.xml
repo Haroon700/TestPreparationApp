@@ -11,11 +11,16 @@
     android:background="@color/white"
     >
 
-    <TextView
-        android:text="questions"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionTextView"
+        android:orientation="horizontal"
+        >
+        <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/number"
         android:fontFamily="@font/lato_black"
         android:textStyle="bold"
         android:textSize="28sp"
@@ -23,6 +28,19 @@
         android:paddingStart="10dp"
         android:layout_gravity="start"
         android:paddingBottom="10dp"/>
+        <TextView
+            android:text="questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionTextView"
+            android:fontFamily="@font/lato_black"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:paddingStart="10dp"
+            android:layout_gravity="start"
+            android:paddingBottom="10dp"/></LinearLayout>
+
 
 
     <TextView
