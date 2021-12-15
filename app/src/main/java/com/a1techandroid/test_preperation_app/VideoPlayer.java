@@ -36,4 +36,8 @@ public class VideoPlayer extends AppCompatActivity {
 
     }
 
+    public void  test(){
+        // this is for git test
+    }
+
 }
