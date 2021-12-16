@@ -92,27 +92,27 @@ public class MainActivityNew extends AppCompatActivity implements NavigationView
         switch (menuItem.getItemId()){
 
             case R.id.item0:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HomeFragment())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HomeFragment()).addToBackStack("home")
                         .commit();
                 closeDrawer();
                 break;
             case R.id.item1:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HistoryFragment())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HistoryFragment()).addToBackStack("history")
                         .commit();
                 closeDrawer();
                 break;
             case R.id.item2:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new SettingFragment())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new SettingFragment()).addToBackStack("setting")
                         .commit();
                 closeDrawer();
                 break;
             case R.id.item3:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id,new AboutFragment())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id,new AboutFragment()).addToBackStack("about")
                         .commit();
                 closeDrawer();
                 break;
             case R.id.item4:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id,new RequirementFragment())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id,new RequirementFragment()).addToBackStack("requirement")
                         .commit();
                 closeDrawer();
                 break;

@@ -44,6 +44,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import es.dmoral.toasty.Toasty;
 
@@ -156,6 +157,8 @@ public class LoginActivty extends AppCompatActivity {
     }
 
     private void updateUI(Object o) {
+        String dateTime = String.valueOf(new Date());
+        Common.setSession(dateTime, getApplicationContext());
         Intent i = new Intent(LoginActivty.this, MainActivityNew.class);
         startActivity(i);
         finish();

@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
         cvHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HistoryFragment())
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new HistoryFragment()).addToBackStack("history")
                         .commit();            }
         });
 

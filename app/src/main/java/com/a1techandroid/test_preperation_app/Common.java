@@ -18,4 +18,16 @@ public class Common {
         String name = prefs.getString("name", "");//"No name defined" is the default value.
         return name;
     }
+
+    public static void setSession(String name, Context context){
+        SharedPreferences.Editor editor = context.getSharedPreferences("session", MODE_PRIVATE).edit();
+        editor.putString("name", name);
+        editor.apply();
+    }
+
+    public static String getSession(Context context){
+        SharedPreferences prefs = context.getSharedPreferences("session", MODE_PRIVATE);
+        String name = prefs.getString("name", "");//"No name defined" is the default value.
+        return name;
+    }
 }

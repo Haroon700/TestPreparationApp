@@ -48,7 +48,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Start_Quiz_Activity extends AppCompatActivity {
@@ -73,17 +76,57 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         private RadioGroup group;
         private int countPaused = 0;
     FirebaseDatabase database;
-    DatabaseReference myRef;
+    DatabaseReference myRef, myRef1;
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 //            mDatabase = FirebaseDatabase.getInstance().getReference();
             auth= FirebaseAuth.getInstance();
             setContentView(R.layout.start_quiz_activity);
-
+            String date1 = Common.getSession(getApplicationContext());
+            Date date = null;
             database = FirebaseDatabase.getInstance();
+
+            SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
+            try {
+                date = format.parse(date1);
+                System.out.println(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+                //milliseconds
+                long different = new Date().getTime() - date.getTime();
+                Date newDAte = new Date();
+                if (date.getTime() < newDAte.getTime()){
+                    myRef = database.getReference("StartQuiz");
+                }else {
+                    myRef1 = database.getReference("Quiz");
+                }
+                long secondsInMilli = 1000;
+                long minutesInMilli = secondsInMilli * 60;
+                long hoursInMilli = minutesInMilli * 60;
+                long daysInMilli = hoursInMilli * 24;
+
+                long elapsedDays = different / daysInMilli;
+                different = different % daysInMilli;
+
+                long elapsedHours = different / hoursInMilli;
+                different = different % hoursInMilli;
+
+                long elapsedMinutes = different / minutesInMilli;
+                different = different % minutesInMilli;
+
+                long elapsedSeconds = different / secondsInMilli;
+
+                System.out.printf(
+                        "%d days, %d hours, %d minutes, %d seconds%n",
+                        elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
+
+
 //            myRef = database.getReference("Question");
-            myRef = database.getReference("StartQuiz");
+
 
 //            questions=((Test) getIntent().getExtras().get("Questions")).getQuestions();
 //            TESTNAME = (String) getIntent().getExtras().get("TESTNAME");
@@ -94,7 +137,12 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
 //            scrollView = findViewById(R.id.discrete);
             recyclerView = findViewById(R.id.recycler);
-            retrieveData();
+            if (date.getTime() < newDAte.getTime()){
+                retrieveData();
+            }else {
+                retrieveData1();
+            }
+
             questions = new ArrayList<>();
 //            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
 //            questions.add(new Question(2, "Camera is to photographer as _____ Is to the soldier","Lens","Enemy","Photo","Gun", "clear answer"));
@@ -630,4 +678,37 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             }
         });
     }
+
+    public void retrieveData1(){
+        ProgressDialog progressDialog = new ProgressDialog(Start_Quiz_Activity.this);
+        progressDialog.setMessage("Getting");
+        progressDialog.show();
+        myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressDialog.hide();
+                for (DataSnapshot dss: snapshot.getChildren()){
+                    Question question = dss.getValue(Question.class);
+                    questions.add(question);
+                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recyclerView.stopNestedScroll();
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+                    recyclerView.setNestedScrollingEnabled(false);
+                    recyclerView.suppressLayout(false);
+
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(questionAdapter);
+                    questionAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                progressDialog.hide();
+                Toast.makeText(Start_Quiz_Activity.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+}
