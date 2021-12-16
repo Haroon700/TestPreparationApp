@@ -37,6 +37,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.a1techandroid.test_preperation_app.Adapter.HistoryAdapter;
+import com.a1techandroid.test_preperation_app.Custom.HistoryModel;
 import com.a1techandroid.test_preperation_app.Custom.NotificationService;
 import com.a1techandroid.test_preperation_app.Custom.Question;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +54,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Start_Quiz_Activity extends AppCompatActivity {
@@ -86,7 +89,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             String date1 = Common.getSession(getApplicationContext());
             Date date = null;
             database = FirebaseDatabase.getInstance();
-
+            int number = new Random().nextInt(100);
             SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
             try {
                 date = format.parse(date1);
@@ -95,11 +98,20 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            String temp = "";
+//            for (int i = 0; i < new Random().nextInt(100); i++) { //new random nextInt() called on each iteration
+//                temp += i + 2 +" ";
+//                i++;
+////                Toast.makeText(this, ""+temp, Toast.LENGTH_SHORT).show();
+////                Toast.makeText(this, ""+new Random().nextInt(100), Toast.LENGTH_SHORT).show();
+//
+//            }
+
 
                 //milliseconds
                 long different = new Date().getTime() - date.getTime();
                 Date newDAte = new Date();
-                if (date.getTime() < newDAte.getTime()){
+                if (number < 20){
                     myRef = database.getReference("StartQuiz");
                 }else {
                     myRef1 = database.getReference("Quiz");
@@ -137,10 +149,10 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
 //            scrollView = findViewById(R.id.discrete);
             recyclerView = findViewById(R.id.recycler);
-            if (date.getTime() < newDAte.getTime()){
+            if (number < 20 ){
                 retrieveData();
             }else {
-                retrieveData1();
+                retrieveData();
             }
 
             questions = new ArrayList<>();
@@ -247,7 +259,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             list = new ArrayList<>();
             arrayList = new ArrayList<>();
             for(int i=0;i<answers.length;i++){
-                if(answers[i]!=null&&answers[i].equals(questions.get(i).getAnswer())){
+                if(answers[i]!=null&&answers[i].equals(questions.get(i).getOpt_A())){
                     score++;
                 }
                 String temp = (answers[i]!=null) ? answers[i]+") ":"null) ";
@@ -687,6 +699,31 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 progressDialog.hide();
+                for (DataSnapshot dss: snapshot.getChildren()){
+                    String key = dss.getKey();
+                   for (DataSnapshot dss1: dss.getChildren()){
+                       int key1 = Integer.parseInt(dss1.getKey());
+                       if (key1 < 30){
+                           Question question = dss1.getValue(Question.class);
+                           questions.add(question);
+                           final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+                           recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+                           recyclerView.stopNestedScroll();
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+                           recyclerView.setNestedScrollingEnabled(false);
+                           recyclerView.suppressLayout(false);
+
+                           recyclerView.setItemAnimator(new DefaultItemAnimator());
+                           recyclerView.setAdapter(questionAdapter);
+                           questionAdapter.notifyDataSetChanged();
+                       }else {
+                           break;
+                       }
+
+                   }
+
+                }
+
                 for (DataSnapshot dss: snapshot.getChildren()){
                     Question question = dss.getValue(Question.class);
                     questions.add(question);

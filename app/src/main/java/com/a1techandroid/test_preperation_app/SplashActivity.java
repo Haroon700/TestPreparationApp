@@ -33,8 +33,8 @@ public class SplashActivity extends AppCompatActivity {
 //        saveData1();
 //        saveData2();
 //        saveData3();
-        testForGEt();
-        saveData();
+//        testForGEt();
+//        saveData();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
