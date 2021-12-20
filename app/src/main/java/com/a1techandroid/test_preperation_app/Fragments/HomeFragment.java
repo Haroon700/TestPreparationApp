@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +51,7 @@ public class HomeFragment extends Fragment {
     CardView cvEditPassword;
     CardView cvLogout;
     CardView cvSchedule;
+    NestedScrollView mScrollView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +74,8 @@ public class HomeFragment extends Fragment {
         cvEditPassword = v.findViewById(R.id.cvEditPassword);
         cvLogout = v.findViewById(R.id.cvLogout);
         cvSchedule = v.findViewById(R.id.cvSchedule);
+        mScrollView = v.findViewById(R.id.scrollView);
+//        mScrollView.setSmoothScrollingEnabled(true);
 //        tabbar = findViewById(R.id.bottomBar);
 //        btnnn = findViewById(R.id.btnnn);
         ArrayList<SliderItem> sliderItems = new ArrayList<>();

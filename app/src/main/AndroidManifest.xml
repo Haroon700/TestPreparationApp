@@ -17,6 +17,7 @@
         android:icon="@drawable/app_logo_2"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo_2"
+        android:windowSoftInputMode="adjustPan"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name=".MainActivity">
