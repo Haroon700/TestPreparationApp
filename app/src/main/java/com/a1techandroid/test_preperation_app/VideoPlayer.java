@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -21,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class VideoPlayer extends AppCompatActivity {
-    ListView listView;
+    WebView listView;
     String id;
     String type;
     Uri uri;
@@ -31,10 +32,12 @@ public class VideoPlayer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_player);
-        listView = findViewById(R.id.exoPlayer);
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("History");
+        listView = findViewById(R.id.dopel);
+        listView.getSettings().setJavaScriptEnabled(true);
+        listView.loadUrl("https://www.issb.com.pk/geninfo.html");
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        myRef = database.getReference("History");
 
         // rtrdy
 

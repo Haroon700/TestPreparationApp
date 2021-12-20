@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -61,7 +62,9 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
         ArrayList<Question> questions;
        static String []answers;
+      static ArrayList<String> ans1 = new ArrayList<>();
         Toolbar toolbar;
+       static int totalmarks;
         ScrollView scrollView;
        static RecyclerView recyclerView;
         LinearLayout indexLayout;
@@ -78,8 +81,8 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         private String TESTNAME;
         private RadioGroup group;
         private int countPaused = 0;
-    FirebaseDatabase database;
-    DatabaseReference myRef, myRef1;
+        FirebaseDatabase database;
+        DatabaseReference myRef, myRef1;
         @Override
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -111,11 +114,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 //milliseconds
                 long different = new Date().getTime() - date.getTime();
                 Date newDAte = new Date();
-                if (number < 20){
+//                if (number < 20){
                     myRef = database.getReference("StartQuiz");
-                }else {
-                    myRef1 = database.getReference("Quiz");
-                }
+//                }else {
+//                    myRef1 = database.getReference("Quiz");
+//                }
                 long secondsInMilli = 1000;
                 long minutesInMilli = secondsInMilli * 60;
                 long hoursInMilli = minutesInMilli * 60;
@@ -149,11 +152,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
 //            scrollView = findViewById(R.id.discrete);
             recyclerView = findViewById(R.id.recycler);
-            if (number < 20 ){
+//            if (number < 20 ){
                 retrieveData();
-            }else {
-                retrieveData();
-            }
+//            }else {
+//                retrieveData();
+//            }
 
             questions = new ArrayList<>();
 //            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
@@ -256,26 +259,54 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         void submit(){
             flag_controller = 0;
             int score=0;
-            list = new ArrayList<>();
-            arrayList = new ArrayList<>();
-            for(int i=0;i<answers.length;i++){
-                if(answers[i]!=null&&answers[i].equals(questions.get(i).getOpt_A())){
-                    score++;
-                }
-                String temp = (answers[i]!=null) ? answers[i]+") ":"null) ";
-
-                list.add("Your choice ("+
-                        temp +
-                        "Right choice is("+ questions.get(i).getAnswer()+")");
-                arrayList.add(questions.get(i).getQuestion());
+            if (totalmarks == ans1.size()-5){
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
+                builder1.setTitle("Congrats");
+                builder1.setMessage("You are passed");
+                builder1.setCancelable(true);
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        alert11.hide();
+                    }
+                }, 2000);
+            }else {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
+                builder1.setTitle("Sorry");
+                builder1.setMessage("Try again please! ");
+                builder1.setCancelable(true);
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        alert11.hide();
+                    }
+                }, 2000);
             }
 
-            try {
-//                mDatabase.child("Results").child(((Test) getIntent().getExtras().get("Questions")).getName())
-//                        .child(auth.getUid()).setValue(score);
-            }catch (Exception e){
-                Log.e("Result Update Failed " ,e.getMessage());
-            }
+            //            list = new ArrayList<>();
+//            arrayList = new ArrayList<>();
+//            for(int i=0;i<answers.length;i++){
+//                if(answers[i]!=null&&answers[i].equals(questions.get(i).getOpt_A())){
+//                    score++;
+//                }
+//                String temp = (answers[i]!=null) ? answers[i]+") ":"null) ";
+//
+//                list.add("Your choice ("+
+//                        temp +
+//                        "Right choice is("+ questions.get(i).getAnswer()+")");
+//                arrayList.add(questions.get(i).getQuestion());
+//            }
+//
+//            try {
+////                mDatabase.child("Results").child(((Test) getIntent().getExtras().get("Questions")).getName())
+////                        .child(auth.getUid()).setValue(score);
+//            }catch (Exception e){
+//                Log.e("Result Update Failed " ,e.getMessage());
+//            }
         }
 
         void dialogStart() {
@@ -438,6 +469,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
             private int itemHeight;
             private ArrayList<Question> data;
+            String selectedOption;
 
             public QuestionAdapter(ArrayList<Question> data) {
                 this.data = data;
@@ -483,13 +515,17 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                         final int selectedId = holder.radioGroup.getCheckedRadioButtonId();
                         timer=60*1000;
                         if(i==R.id.radioButton){
-                            answers[position]="A";
+                            selectedOption = data.get(position).getOpt_A();
+                            answers[position]=data.get(position).getOpt_A();
                         }  else if(i==R.id.radioButton2){
-                            answers[position]="B";
+                            selectedOption = data.get(position).getOpt_B();
+                            answers[position]= data.get(position).getOpt_B();
                         }else if(i==R.id.radioButton3){
-                            answers[position]="C";
+                            selectedOption = data.get(position).getOpt_C();
+                            answers[position]= data.get(position).getOpt_C();
                         }else if(i==R.id.radioButton4){
-                            answers[position]="D";
+                            selectedOption = data.get(position).getOpt_D();
+                            answers[position]= data.get(position).getOpt_D();
                         }
                         else if(i==R.id.radioButton5) {
                             holder.radioGroup.clearCheck();
@@ -502,18 +538,39 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 holder.next.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
+                        if (!ans1.get(position).equals(selectedOption)){
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
+                            builder1.setTitle("Correct Answer is:");
+                            builder1.setMessage(data.get(position).getAnswer());
+                            builder1.setCancelable(true);
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    alert11.hide();
+                                    recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
+                                }
+                            }, 2000);
+
+                        }else {
+                            totalmarks++;
+                            recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
+
+                        }
                     }
                 });
+
 
                 holder.prev.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (data.size() == position){
-
-                        }else {
-                            recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position-1);
-                        }
+                        Toast.makeText(recyclerView.getContext(), "Not allowed", Toast.LENGTH_SHORT).show();
+//                        if (data.size() == position){
+//
+//                        }else {
+//                            recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position-1);
+//                        }
                     }
                 });
 
@@ -663,6 +720,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(Start_Quiz_Activity.this);
         progressDialog.setMessage("Getting");
         progressDialog.show();
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -670,6 +728,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 for (DataSnapshot dss: snapshot.getChildren()){
                     Question question = dss.getValue(Question.class);
                     questions.add(question);
+                    ans1.add(question.getAnswer());
                     final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
                     recyclerView.stopNestedScroll();
@@ -681,6 +740,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     recyclerView.setAdapter(questionAdapter);
                     questionAdapter.notifyDataSetChanged();
                 }
+
             }
 
             @Override

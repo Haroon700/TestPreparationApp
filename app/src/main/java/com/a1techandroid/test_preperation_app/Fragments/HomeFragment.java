@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
     CardView cvHistory;
     CardView cvEditPassword;
     CardView cvLogout;
+    CardView cvSchedule;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class HomeFragment extends Fragment {
         cvHistory = v.findViewById(R.id.cvHistory);
         cvEditPassword = v.findViewById(R.id.cvEditPassword);
         cvLogout = v.findViewById(R.id.cvLogout);
+        cvSchedule = v.findViewById(R.id.cvSchedule);
 //        tabbar = findViewById(R.id.bottomBar);
 //        btnnn = findViewById(R.id.btnnn);
         ArrayList<SliderItem> sliderItems = new ArrayList<>();
@@ -122,6 +124,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showPopUp();
+            }
+        });
+
+        cvSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),VideoPlayer.class));
             }
         });
     }
