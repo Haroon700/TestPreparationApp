@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-//        saveData1();
+        saveData1();
 //        saveData2();
 //        saveData3();
 //        testForGEt();
@@ -171,8 +171,31 @@ public class SplashActivity extends AppCompatActivity {
 
     public void saveData1(){
         ArrayList<Question> questions = new ArrayList<>();
-        myRef = database.getReference("Question1").child("Air").child("Easy");
+        myRef = database.getReference("Question").child("Hard");
 
+        questions.add(new Question( "In which year Japan attacked Manchuria", "1931"));
+
+        questions.add(new Question( "In which of the following city Army Medical College is located", "Rawalpindi"));
+        questions.add(new Question( "Tell the name of Chief of Staff of Pak Army who died in uniform", "A & B"));
+        questions.add(new Question( "At the time of Kargil in 1999 the Chief of Army Staff was", " General Parvez Musharaf"));
+        questions.add(new Question( "At the time of 1971 War the C-in-C of Pak Army was", "General Agha Muhammad Yahya Khan"));
+        questions.add(new Question( "At the time of 1965 War the C-in-C of Pakistan Army wa", "General Muhammad Musa Khan"));
+        questions.add(new Question( "The Largest cantonment of Pakistan army is located in ", "Kharian"));
+        questions.add(new Question( "Who was the first Muslim C-in-C of Pakistan Army", "Field Marshal Muhammad Ayoub"));
+        questions.add(new Question( "Chief of Army Staff (COAS) Gen Qamar Javed Bajwa was awarded a______________for promotion of Defence ties between Pakistan and Turkey on 20th June 2017", "Legion of Merit"));
+        questions.add(new Question( "Which banned outfit’s group was destroyed by Pak Army in 3-day Mastung operation, which was carried out from June 1 to 3 – 2017", "Lashkar-i-Jhangvi Al-Almi"));
+        questions.add(new Question( "Pakistan Army on launched ‘Operation Radd-ul-Fasaad’ across the country on", "22nd Feb 2017"));
+        questions.add(new Question( "Till now, How many Chief of Army Staff (COAS), of Pakistan are selected from Baloch Regiment?", " Four"));
+        questions.add(new Question( "Pakistan Army conducting an operation along the Pak-Afghan border in Khyber Agency, called?", "Operation Rajjgal"));
+        questions.add(new Question( "Who was the first commander of islamic arm", "Hazrat Hamza (RA)"));
+        questions.add(new Question( "Pakistan Army launches android Base Game on 23-March-2018", "Pakistan Army launches android Base Game on 23-March-2018"));
+        questions.add(new Question( "As per Pakistan army spokesperson, Pakistan will host a dinner on it’s 78th Pakistan day, in which guests invited are", " International celebrities"));
+        questions.add(new Question( "Army ___________troubled places as curfew remained in force", "patrolling"));
+        questions.add(new Question( "He has _________ his mind to Join Pak Army", "made up"));
+        questions.add(new Question( "Chief of Army Staff (COAS) General Qamar Javed Bajwa during his visit to Iran in Nov 2017 meet?", "All of the Above"));
+        questions.add(new Question( "Navy Captain is equal in rank to arm", "Colonel"));
+        questions.add(new Question( "Tipu Sultan wrote a letter to which government to help him against British Army rule in India", "France"));
+        questions.add(new Question( "ARMY: LOGISTICS ::", "business: strategy"));
         questions.add(new Question( "A kind of war such is “Guerrilla” a word of Spanish its meaning is", " Little war"));
         questions.add(new Question( "In which battle did the defeat of Muslims stop their invasions ", "Battle of Tours"));
         questions.add(new Question( "What is the common factor found in the four U.S. presidents: Abraham Lincoln , James A. Garfield , William McKinley , and John F. Kennedy", "All four were assassinated "));
@@ -206,29 +229,7 @@ public class SplashActivity extends AppCompatActivity {
         questions.add(new Question( "Chief Election Commissioner Sikandar Sultan Raja was a", "Retired Civil Bureaucrat"));
         questions.add(new Question( "The Third Battle of Panipat was fought between", "Ahmad Shah Abdali and Marathas"));
         questions.add(new Question( "The Second battle of Panipat was fought between", "Hem Chandra Vikramaditya and Akbar "));
-        questions.add(new Question( "In which year Japan attacked Manchuria", "1931"));
 
-        questions.add(new Question( "In which of the following city Army Medical College is located", "Rawalpindi"));
-        questions.add(new Question( "Tell the name of Chief of Staff of Pak Army who died in uniform", "A & B"));
-        questions.add(new Question( "At the time of Kargil in 1999 the Chief of Army Staff was", " General Parvez Musharaf"));
-        questions.add(new Question( "At the time of 1971 War the C-in-C of Pak Army was", "General Agha Muhammad Yahya Khan"));
-        questions.add(new Question( "At the time of 1965 War the C-in-C of Pakistan Army wa", "General Muhammad Musa Khan"));
-        questions.add(new Question( "The Largest cantonment of Pakistan army is located in ", "Kharian"));
-        questions.add(new Question( "Who was the first Muslim C-in-C of Pakistan Army", "Field Marshal Muhammad Ayoub"));
-        questions.add(new Question( "Chief of Army Staff (COAS) Gen Qamar Javed Bajwa was awarded a______________for promotion of Defence ties between Pakistan and Turkey on 20th June 2017", "Legion of Merit"));
-        questions.add(new Question( "Which banned outfit’s group was destroyed by Pak Army in 3-day Mastung operation, which was carried out from June 1 to 3 – 2017", "Lashkar-i-Jhangvi Al-Almi"));
-        questions.add(new Question( "Pakistan Army on launched ‘Operation Radd-ul-Fasaad’ across the country on", "22nd Feb 2017"));
-        questions.add(new Question( "Till now, How many Chief of Army Staff (COAS), of Pakistan are selected from Baloch Regiment?", " Four"));
-        questions.add(new Question( "Pakistan Army conducting an operation along the Pak-Afghan border in Khyber Agency, called?", "Operation Rajjgal"));
-        questions.add(new Question( "Who was the first commander of islamic arm", "Hazrat Hamza (RA)"));
-        questions.add(new Question( "Pakistan Army launches android Base Game on 23-March-2018", "Pakistan Army launches android Base Game on 23-March-2018"));
-        questions.add(new Question( "As per Pakistan army spokesperson, Pakistan will host a dinner on it’s 78th Pakistan day, in which guests invited are", " International celebrities"));
-        questions.add(new Question( "Army ___________troubled places as curfew remained in force", "patrolling"));
-        questions.add(new Question( "He has _________ his mind to Join Pak Army", "made up"));
-        questions.add(new Question( "Chief of Army Staff (COAS) General Qamar Javed Bajwa during his visit to Iran in Nov 2017 meet?", "All of the Above"));
-        questions.add(new Question( "Navy Captain is equal in rank to arm", "Colonel"));
-        questions.add(new Question( "Tipu Sultan wrote a letter to which government to help him against British Army rule in India", "France"));
-        questions.add(new Question( "ARMY: LOGISTICS ::", "business: strategy"));
         questions.add(new Question( "Pakistan Army launched Operation Khyber-4 under Radd-ul-Fasaad (RuF) to “wipe out terrorists” in", "Rajgal valley"));
 //        myRef.setValue("hello");
         myRef.setValue(questions).addOnSuccessListener(new OnSuccessListener<Void>() {

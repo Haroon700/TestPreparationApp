@@ -513,7 +513,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            holder.questionText.setText(data.get(position).getQuestion());
+            holder.questionText.setText(position+1+": "+data.get(position).getQuestion());
             holder.r1.setText(data.get(position).getOpt_A());
             holder.r2.setText(data.get(position).getOpt_B());
             holder.r3.setText(data.get(position).getOpt_C());
@@ -582,10 +582,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 //                                        alert11.hide();
-
+                                    holder.correctAnser.setVisibility(View.INVISIBLE);
+                                    holder.type.setVisibility(View.INVISIBLE);
                                     recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
                                 }
-                            }, 4000);
+                            }, 2000);
 
                         }else {
                             selectedOption = "";
@@ -598,10 +599,11 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 //                                        alert11.hide();
-
+                                    holder.correctAnser.setVisibility(View.INVISIBLE);
+                                    holder.type.setVisibility(View.INVISIBLE);
                                     recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, position+1);
                                 }
-                            }, 4000);
+                            }, 2000);
 
                         }
                     }
