@@ -241,7 +241,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 //                }
 //            });
 
-        timer=600*1000;
+        timer=1200*1000;
     }
     void showPopUp(){
         AlertDialog.Builder builder=new AlertDialog.Builder(Start_Quiz_Activity.this);
