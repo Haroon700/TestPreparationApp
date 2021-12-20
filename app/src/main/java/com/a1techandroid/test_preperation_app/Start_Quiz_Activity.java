@@ -241,7 +241,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     submit();
 //                setAlertDialog(answerText);
-                    dialogStart();
+//                    dialogStart();
                 }
             });
 
@@ -270,12 +270,13 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         alert11.hide();
+                        finish();
                     }
                 }, 2000);
             }else {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
-                builder1.setTitle("Sorry");
-                builder1.setMessage("Try again please! ");
+                builder1.setTitle("Failed");
+                builder1.setMessage("Sorry, Try again please! ");
                 builder1.setCancelable(true);
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
@@ -283,6 +284,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                     @Override
                     public void run() {
                         alert11.hide();
+                        finish();
                     }
                 }, 2000);
             }
@@ -376,7 +378,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
                 countPaused = -1000;
                 submit();
-                dialogStart();
+//                dialogStart();
             }
         }
 
@@ -438,7 +440,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 
                 public void onFinish() {
                     submit();
-                    dialogStart();
+//                    dialogStart();
                 }
             }.start();
 
