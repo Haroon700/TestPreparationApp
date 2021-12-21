@@ -126,4 +126,15 @@
             android:text="2"/>
     </LinearLayout>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/border_xml"
+        android:text="Ok"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/color9"
+        android:layout_margin="10dp"
+        android:id="@+id/btn"
+        />
+
 </LinearLayout>

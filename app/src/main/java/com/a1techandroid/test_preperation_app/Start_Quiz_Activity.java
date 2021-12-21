@@ -339,6 +339,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         dialog.setContentView(view);
         TextView type = view.findViewById(R.id.pass);
         TextView statusPAss = view.findViewById(R.id.status);
+        Button btn = view.findViewById(R.id.btn);
         statusPAss.setText(status);
         type.setText(value);
         TextView wrong = view.findViewById(R.id.wrong);
@@ -353,13 +354,13 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         window.setGravity(Gravity.CENTER);
         dialog.show();
 
-        new Handler().postDelayed(new Runnable() {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View view) {
                 dialog.hide();
                 finish();
             }
-        }, 3000);
+        });
     }
 
     void dialogStart() {

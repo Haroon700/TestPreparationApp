@@ -19,6 +19,8 @@
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:background="@drawable/border_xml"
+            android:layout_margin="10dp"
             />
 
         <TextView
@@ -26,10 +28,12 @@
             android:layout_height="wrap_content"
             android:text="@string/about_app"
             android:layout_margin="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/color9"
             android:textSize="18dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:background="@drawable/border_xml"
+
             />
     </LinearLayout>
 
