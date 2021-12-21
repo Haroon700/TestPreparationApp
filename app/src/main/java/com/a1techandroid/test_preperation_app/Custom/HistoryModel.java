@@ -1,16 +1,18 @@
 package com.a1techandroid.test_preperation_app.Custom;
 
 public class HistoryModel {
-    String name, date, result, leve;
+    String name, date, result, leve, correct , wrong;
 
     public HistoryModel() {
     }
 
-    public HistoryModel(String name, String date, String result, String leve) {
+    public HistoryModel(String name, String date, String result, String leve, String correct, String wrong) {
         this.name = name;
         this.date = date;
         this.result = result;
         this.leve = leve;
+        this.correct = correct;
+        this.wrong = wrong;
     }
 
     public String getName() {
@@ -43,5 +45,21 @@ public class HistoryModel {
 
     public void setLeve(String leve) {
         this.leve = leve;
+    }
+
+    public String getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(String correct) {
+        this.correct = correct;
+    }
+
+    public String getWrong() {
+        return wrong;
+    }
+
+    public void setWrong(String wrong) {
+        this.wrong = wrong;
     }
 }

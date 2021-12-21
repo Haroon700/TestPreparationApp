@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Requirements"
+            android:textStyle="bold"
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -38,6 +39,9 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
+
             >
             <TextView
                 android:layout_width="0dp"
@@ -46,9 +50,10 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
+
                 />
 
             <TextView
@@ -58,7 +63,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -70,6 +75,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
             >
             <TextView
                 android:layout_width="0dp"
@@ -78,7 +85,7 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -90,7 +97,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -103,6 +110,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
             >
             <TextView
                 android:layout_width="0dp"
@@ -111,7 +120,7 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -123,7 +132,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -135,6 +144,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
             >
             <TextView
                 android:layout_width="0dp"
@@ -143,7 +154,7 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -155,7 +166,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -168,6 +179,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
             >
             <TextView
                 android:layout_width="0dp"
@@ -176,7 +189,7 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -188,7 +201,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -201,6 +214,8 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
             >
             <TextView
                 android:layout_width="0dp"
@@ -209,7 +224,7 @@
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />
@@ -221,7 +236,7 @@
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:layout_weight="50"
                 />

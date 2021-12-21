@@ -37,7 +37,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     public QuestionListAdapter(Context context, ArrayList<Question> data) {
-        myRef = database.getReference("History");
+//        myRef = database.getReference("History");
         this.data = data;
         this.context = context;
         this.notifyDataSetChanged();
@@ -74,15 +74,15 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         int index = position + 1;
         holder.number.setText(index+": ");
 
-        if (position == data.size()-1){
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            Date date = new Date();
-            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-            String dateStr =  dateFormat.format(date);
-            HistoryModel model = new HistoryModel(user.getEmail(),dateStr,"Attempt","1");
-            myRef.child(user.getEmail().replace(".","")).push().setValue(model);
-
-        }
+//        if (position == data.size()-1){
+//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            Date date = new Date();
+//            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+//            String dateStr =  dateFormat.format(date);
+//            HistoryModel model = new HistoryModel(user.getEmail(),dateStr,"Attempt","1");
+//            myRef.child(user.getEmail().replace(".","")).push().setValue(model);
+//
+//        }
 
 
     }

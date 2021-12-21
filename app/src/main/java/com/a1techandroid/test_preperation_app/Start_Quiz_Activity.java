@@ -2,6 +2,7 @@ package com.a1techandroid.test_preperation_app;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,12 +13,15 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +49,7 @@ import com.a1techandroid.test_preperation_app.Custom.HistoryModel;
 import com.a1techandroid.test_preperation_app.Custom.NotificationService;
 import com.a1techandroid.test_preperation_app.Custom.Question;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +58,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,7 +72,9 @@ public class Start_Quiz_Activity extends AppCompatActivity {
     static String []answers;
     static ArrayList<String> ans1 = new ArrayList<>();
     Toolbar toolbar;
-    static int totalmarks;
+    static int totalmarks = 0;
+    static int wronganswer= 0;
+    static int totalQuest= 0;
     ScrollView scrollView;
     static RecyclerView recyclerView;
     LinearLayout indexLayout;
@@ -84,16 +92,21 @@ public class Start_Quiz_Activity extends AppCompatActivity {
     private RadioGroup group;
     private int countPaused = 0;
     FirebaseDatabase database;
-    DatabaseReference myRef, myRef1;
+    DatabaseReference myRef, myRef1,historyRef;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //            mDatabase = FirebaseDatabase.getInstance().getReference();
         auth= FirebaseAuth.getInstance();
         setContentView(R.layout.start_quiz_activity);
+        database = FirebaseDatabase.getInstance();
+        historyRef = database.getReference("History");
+
+        totalmarks = 0;
+        totalQuest = 0;
+        wronganswer = 0;
         String date1 = Common.getSession(getApplicationContext());
         Date date = null;
-        database = FirebaseDatabase.getInstance();
         int number = new Random().nextInt(100);
         SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy");
         try {
@@ -270,33 +283,28 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         flag_controller = 0;
         int score=0;
         if (totalmarks == ans1.size()-5){
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
-            builder1.setTitle("Congrats");
-            builder1.setMessage("You are passed");
-            builder1.setCancelable(true);
-            AlertDialog alert11 = builder1.create();
-            alert11.show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    alert11.hide();
-                    finish();
-                }
-            }, 2000);
+            openDialog("Congrats", "You are passed ");
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Date date = new Date();
+            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(Start_Quiz_Activity.this);
+            String dateStr =  dateFormat.format(date);
+            HistoryModel model = new HistoryModel(user.getEmail(),dateStr,"Pass",""+totalQuest, ""+totalmarks,""+wronganswer);
+            historyRef.child(user.getEmail().replace(".","")).push().setValue(model);
         }else {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(recyclerView.getContext());
-            builder1.setTitle("Failed");
-            builder1.setMessage("Sorry, Try again please! ");
-            builder1.setCancelable(true);
-            AlertDialog alert11 = builder1.create();
-            alert11.show();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    alert11.hide();
-                    finish();
-                }
-            }, 2000);
+            openDialog("Failed", "Sorry, Try again please! ");
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Date date = new Date();
+            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(Start_Quiz_Activity.this);
+            String dateStr =  dateFormat.format(date);
+            HistoryModel model = new HistoryModel(user.getEmail(),dateStr,"Failed",""+totalQuest, ""+totalmarks,""+wronganswer);
+            historyRef.child(user.getEmail().replace(".","")).push().setValue(model);
+
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    finish();
+//                }
+//            }, 2000);
         }
 
         //            list = new ArrayList<>();
@@ -319,6 +327,39 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 //            }catch (Exception e){
 //                Log.e("Result Update Failed " ,e.getMessage());
 //            }
+    }
+
+    public void openDialog(String status, String value) {
+        final Dialog dialog = new Dialog(Start_Quiz_Activity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.result_dialog, null, false);
+//        dialog.setContentView(R.layout.result_dialog);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        dialog.setContentView(view);
+        TextView type = view.findViewById(R.id.pass);
+        TextView statusPAss = view.findViewById(R.id.status);
+        statusPAss.setText(status);
+        type.setText(value);
+        TextView wrong = view.findViewById(R.id.wrong);
+        TextView correct = view.findViewById(R.id.correct);
+        TextView total = view.findViewById(R.id.total);
+        total.setText(""+totalQuest);
+        correct.setText(""+totalmarks);
+        wrong.setText(""+wronganswer);
+
+        final Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setGravity(Gravity.CENTER);
+        dialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.hide();
+                finish();
+            }
+        }, 3000);
     }
 
     void dialogStart() {
@@ -573,11 +614,13 @@ public class Start_Quiz_Activity extends AppCompatActivity {
 //                                builder1.setCancelable(true);
 //                                AlertDialog alert11 = builder1.create();
 //                                alert11.show();
+                            wronganswer++;
+                            totalQuest++;
                             holder.correctAnser.setVisibility(View.VISIBLE);
                             holder.type.setVisibility(View.VISIBLE);
                             holder.type.setText("You Entered Wrong answer");
                             holder.type.setTextColor(Color.RED);
-                            holder.correctAnser.setText("Correct anser is: " +data.get(position).getAnswer());
+                            holder.correctAnser.setText("Correct answer is: " +data.get(position).getAnswer());
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -595,6 +638,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                             holder.type.setText("You Entered Correct Answer");
                             holder.type.setTextColor(Color.WHITE);
                             totalmarks++;
+                            totalQuest++;
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {

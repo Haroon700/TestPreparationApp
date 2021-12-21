@@ -13,21 +13,36 @@
         android:layout_margin="15dp"
         >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight="50"
+            android:id="@+id/userName"
+            />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="100"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_xml"
         >
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="Result"
             android:textColor="@color/black"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
             />
@@ -39,10 +54,10 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
-            android:id="@+id/userName"
+            android:id="@+id/result"
             />
     </LinearLayout>
 
@@ -52,6 +67,8 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="100"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_xml"
         >
         <TextView
             android:layout_width="0dp"
@@ -60,7 +77,7 @@
             android:textColor="@color/black"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
             />
@@ -72,7 +89,7 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
             android:id="@+id/date"
@@ -86,15 +103,17 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="100"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_xml"
         >
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Result"
+            android:text="Attemp Question"
             android:textColor="@color/black"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
             />
@@ -106,10 +125,10 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
-            android:id="@+id/result"
+            android:id="@+id/attemp"
 
             />
     </LinearLayout>
@@ -120,15 +139,17 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="100"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_xml"
         >
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Level"
+            android:text="Correct"
             android:textColor="@color/black"
             android:textSize="22dp"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
             />
@@ -140,13 +161,49 @@
             android:layout_margin="10dp"
             android:textColor="@color/black"
             android:textSize="18dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:layout_weight="50"
-            android:id="@+id/level"
+            android:id="@+id/correct"
 
             />
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="100"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_xml"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Wrong"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:layout_weight="50"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="date"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:layout_weight="50"
+                android:id="@+id/wrong"
+
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

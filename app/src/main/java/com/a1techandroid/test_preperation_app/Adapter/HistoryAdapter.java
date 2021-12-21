@@ -41,7 +41,7 @@ public class HistoryAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
-        public TextView textName, textDate, textLEvel, textREsult;
+        public TextView textName, textDate, attemp, textREsult, correct, wrong;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -53,8 +53,10 @@ public class HistoryAdapter extends BaseAdapter {
 
             viewHolder.textName = convertView.findViewById(R.id.userName);
             viewHolder.textDate = convertView.findViewById(R.id.date);
-            viewHolder.textLEvel = convertView.findViewById(R.id.level);
+            viewHolder.correct = convertView.findViewById(R.id.correct);
             viewHolder.textREsult = convertView.findViewById(R.id.result);
+            viewHolder.attemp = convertView.findViewById(R.id.attemp);
+            viewHolder.wrong = convertView.findViewById(R.id.wrong);
 //            convertView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -72,8 +74,10 @@ public class HistoryAdapter extends BaseAdapter {
         final HistoryModel events = list.get(position);
         viewHolder.textName.setText(events.getName());
         viewHolder.textDate.setText(events.getDate());
-        viewHolder.textLEvel.setText(events.getLeve());
+        viewHolder.attemp.setText(events.getLeve());
         viewHolder.textREsult.setText(events.getResult());
+        viewHolder.wrong.setText(events.getWrong());
+        viewHolder.correct.setText(events.getCorrect());
         return convertView;
     }
 }
