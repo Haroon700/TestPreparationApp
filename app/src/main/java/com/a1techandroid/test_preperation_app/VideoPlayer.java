@@ -34,7 +34,13 @@ public class VideoPlayer extends AppCompatActivity {
         setContentView(R.layout.video_player);
         listView = findViewById(R.id.dopel);
         listView.getSettings().setJavaScriptEnabled(true);
-        listView.loadUrl("https://www.issb.com.pk/geninfo.html");
+        String type = getIntent().getStringExtra("type");
+        if (type.equals("history")){
+            listView.loadUrl("https://en.wikipedia.org/wiki/Military_history_of_Pakistan#:~:text=The%20Pakistani%20Armed%20Forces%20were,fought%20in%20both%20world%20wars.");
+        }else {
+            listView.loadUrl("https://www.issb.com.pk/geninfo.html");
+        }
+
 //        FirebaseUser currentUser = mAuth.getCurrentUser();
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //        myRef = database.getReference("History");

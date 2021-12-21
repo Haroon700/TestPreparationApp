@@ -34,6 +34,8 @@ import com.a1techandroid.test_preperation_app.Fragments.OptionDetailFragment;
 import com.a1techandroid.test_preperation_app.LevelsActivity;
 import com.a1techandroid.test_preperation_app.MainGridModel;
 import com.a1techandroid.test_preperation_app.R;
+import com.a1techandroid.test_preperation_app.VideoPlayer;
+import com.a1techandroid.test_preperation_app.past_papers;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,15 +90,23 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
                     int item = position;
                     if (position == 0){
                         Common.setForceType("army", context);
-
+                        view.getContext().startActivity(new Intent(context, LevelsActivity.class));
                     }else if (position == 1){
                         Common.setForceType("navy", context);
-
+                        view.getContext().startActivity(new Intent(context, LevelsActivity.class));
                     }else if (position == 2){
                         Common.setForceType("air", context);
+                        view.getContext().startActivity(new Intent(context, LevelsActivity.class));
+                    }else if (position == 3){
+                        Intent intent = new Intent(context, VideoPlayer.class);
+                        intent.putExtra("type","history");
+                        view.getContext().startActivity(intent);
+
+                    }else {
+                        view.getContext().startActivity(new Intent(context, past_papers.class));
 
                     }
-                    view.getContext().startActivity(new Intent(context, LevelsActivity.class));
+
                 }
             });
 

@@ -16,6 +16,8 @@ import com.a1techandroid.test_preperation_app.Common;
 import com.a1techandroid.test_preperation_app.LevelsActivity;
 import com.a1techandroid.test_preperation_app.MainGridModel;
 import com.a1techandroid.test_preperation_app.R;
+import com.a1techandroid.test_preperation_app.VideoPlayer;
+import com.a1techandroid.test_preperation_app.past_papers;
 
 import java.util.ArrayList;
 
@@ -69,15 +71,25 @@ public class GridAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (position == 0){
                     Common.setForceType("army", context);
+                    v.getContext().startActivity(new Intent(context, LevelsActivity.class));
 
                 }else if (position == 1){
                     Common.setForceType("navy", context);
+                    v.getContext().startActivity(new Intent(context, LevelsActivity.class));
 
                 }else if (position == 2){
                     Common.setForceType("air", context);
+                    v.getContext().startActivity(new Intent(context, LevelsActivity.class));
+
+                }else if (position == 3){
+                    Intent intent = new Intent(context, VideoPlayer.class);
+                    intent.putExtra("type","history");
+                    v.getContext().startActivity(intent);
+
+                }else {
+                    v.getContext().startActivity(new Intent(context, past_papers.class));
 
                 }
-                v.getContext().startActivity(new Intent(context, LevelsActivity.class));
             }
         });
 

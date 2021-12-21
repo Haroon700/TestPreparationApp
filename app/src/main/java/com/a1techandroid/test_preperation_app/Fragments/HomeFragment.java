@@ -135,7 +135,9 @@ public class HomeFragment extends Fragment {
         cvSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),VideoPlayer.class));
+                Intent intent = new Intent(getApplicationContext(), VideoPlayer.class);
+                intent.putExtra("type","issb");
+                startActivity(intent);
             }
         });
     }
