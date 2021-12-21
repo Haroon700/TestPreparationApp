@@ -97,14 +97,8 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
                     }else if (position == 2){
                         Common.setForceType("air", context);
                         view.getContext().startActivity(new Intent(context, LevelsActivity.class));
-                    }else if (position == 3){
-                        Intent intent = new Intent(context, VideoPlayer.class);
-                        intent.putExtra("type","history");
-                        view.getContext().startActivity(intent);
-
                     }else {
                         view.getContext().startActivity(new Intent(context, past_papers.class));
-
                     }
 
                 }

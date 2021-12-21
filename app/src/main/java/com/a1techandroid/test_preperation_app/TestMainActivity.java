@@ -55,7 +55,7 @@ public class TestMainActivity extends AppCompatActivity {
         list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.army), "Pak Army"));
         list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.navy), "Pak Navy"));
         list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.airforce), "Pak AirForce"));
-        list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.app_logo), "History Pak Army"));
+//        list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.app_logo), "History Pak Army"));
         list.add(new MainGridModel(getApplicationContext().getResources().getDrawable(R.drawable.app_logo), "Past Papper"));
         GridAdapter gridAdapter = new GridAdapter(getApplicationContext(), list);
         gridLayout.setAdapter(gridAdapter);
