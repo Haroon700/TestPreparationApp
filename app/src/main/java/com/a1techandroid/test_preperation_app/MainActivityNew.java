@@ -48,7 +48,7 @@ public class MainActivityNew extends AppCompatActivity implements NavigationView
 
     private void initializeViews() {
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("ISSB Test Prepearation App");
+        toolbar.setTitle("ISSB Test Preparation App");
         setSupportActionBar(toolbar);
         frameLayout = findViewById(R.id.framelayout_id);
         drawerLayout = findViewById(R.id.drawer);

@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        saveData1();
+//        saveData1();
 //        saveData2();
 //        saveData3();
 //        testForGEt();
@@ -56,6 +56,25 @@ public class SplashActivity extends AppCompatActivity {
 
     public void testForGEt(){
         ArrayList<Question> questions = new ArrayList<>();
+
+        questions.add(new Question(21, "According to the article 45 of constitution, who possess the constitutional right to pardon a death row defendant ","Chief Justice of Pakistan","Chief of Army Staff of Pakistan","President of Pakistan","Prime Minister of Pakistan", "Chief of Army Staff of Pakistan"));
+        questions.add(new Question(22, "How many Urdu Words are used in the National Anthem of Pakistan","5","2","1","2", "2"));
+        questions.add(new Question(23, "The Battle of Yarmouk was fought during the caliphate o","Hazrat Abu Bakar (RA)","Hazrat Usman (RA)","Hazrat Umar (RA)","Hazrat Ali (RA)", "Hazrat Abu Bakar (RA)"));
+        questions.add(new Question(24, "Who abolished Khilafat in Turkey","Alliance","British Army","Mustafa Kemal Atatürk","None of These", "None of These"));
+        questions.add(new Question(25, "Chief Election Commissioner Sikandar Sultan Raja was a","Retired Justice","Retired Civil Bureaucrat","Retired Army Officer","None of these", "Retired Army Officer"));
+        questions.add(new Question(26, "The Third Battle of Panipat was fought between","Ahmad Shah Abdali and Marathas","Babur and Ibrahim Lodi","Akbar and Lal Singh","Ahmed Shah and Balaji Baji Rao", "Akbar and Lal Singh"));
+        questions.add(new Question(28, "The Battle of Hattin was fight in ","1178","1187","1189","1200", "1189"));
+        questions.add(new Question(29, "Battle of Hastings was fought in","1065","1066","1067","1068", "1068"));
+        questions.add(new Question(30, "Who is the current Director General Military Intelligence (MI) of Pakistan","Major General Sarfraz Sattar","Major General Syed Asim Munir Ahmed","Major General Azhar Waqas","Major General Zeeshan Asghar", "Major General Sarfraz Sattar"));
+
+
+        questions.add(new Question(31, "Who punished Musa bin Nusayr for invading Spain","Hajj Bin Yousuf","Walid Bin Abdul-Malik","Umar bin Abdul Aziz","Sulaiman", "Hajj Bin Yousuf"));
+        questions.add(new Question(32, "Battale of ZALAQA was fought between Alfanso VI and Yousaf bin Tashfeen in ","1070","1086","1121","1240", "1121"));
+        questions.add(new Question(33, "In which year Japan attacked Manchuria","1930","1931","1936","1937", "clear answer"));
+        questions.add(new Question(34, "Who was behind the Karachi Stock Exchange attack on 29th June 2020","Balochistan Liberation Army","Tehrik E Taliban Pakistan","RAW","Balochistan Liberation Front", "clear answer"));
+        questions.add(new Question(35, "The developers of which country has developed the world’s 1st digital contact tracing app utilizing the Exposure Notification API of Apple and Google","United States","Switzerland ","Germany","Italy", "clear answer"));
+        questions.add(new Question(36, "‘Quwwat ul-Islam’ Mosque is in","Kabul","Agra","Lahore","Delhi", "clear answer"));
+        questions.add(new Question(37, "Which Country has successful conducted a test-flight of a Hypersonic Missile after Russia","USA","North Korea","France","Israel", "clear answer"));
         questions.add(new Question(1, "If a member of ASF deserts, who will be requested to capture the deserter","Civil authorities","Hataf","Abdali","Shaheen", "clear answer"));
         questions.add(new Question(2, "Officers and members of ASF to be subject to the ","Civil Servant Rule, 1973","Police Order, 2002","Code of Criminal Procedure, 1898","Pakistan Army Act, 1952", "clear answer"));
         questions.add(new Question(3, "According to ASF Act 1975, who is head of the Airports Security Force (ASF)"," Force Commander","Director General","Army Chief","Prime Minister", "clear answer"));
@@ -79,26 +98,8 @@ public class SplashActivity extends AppCompatActivity {
         questions.add(new Question(20, "Which of the following methods of tunneling is used for long tunnels at great depths","Army method","Needle beam method","Austrian method","English method  ", "clear answer"));
 
 
-        questions.add(new Question(21, "According to the article 45 of constitution, who possess the constitutional right to pardon a death row defendant ","Chief Justice of Pakistan","Chief of Army Staff of Pakistan","President of Pakistan","Prime Minister of Pakistan", "clear answer"));
-        questions.add(new Question(22, "How many Urdu Words are used in the National Anthem of Pakistan","5","2","1","2", "clear answer"));
-        questions.add(new Question(23, "The Battle of Yarmouk was fought during the caliphate o","Hazrat Abu Bakar (RA)","Hazrat Usman (RA)","Hazrat Umar (RA)","Hazrat Ali (RA)", "clear answer"));
-        questions.add(new Question(24, "Who abolished Khilafat in Turkey","Alliance","British Army","Mustafa Kemal Atatürk","None of These", "clear answer"));
-        questions.add(new Question(25, "Chief Election Commissioner Sikandar Sultan Raja was a","Retired Justice","Retired Civil Bureaucrat","Retired Army Officer","None of these", "clear answer"));
-        questions.add(new Question(26, "The Third Battle of Panipat was fought between","Ahmad Shah Abdali and Marathas","Babur and Ibrahim Lodi","Akbar and Lal Singh","Ahmed Shah and Balaji Baji Rao", "clear answer"));
-        questions.add(new Question(27, "The Second battle of Panipat was fought between","Hem Chandra Vikramaditya and Akbar"," Akbar and Lal Singh"," Akbar and Lal Singh","Tamerlane and Behlol Lodi", "clear answer"));
-        questions.add(new Question(28, "The Battle of Hattin was fight in ","1178","1187","1189","1200", "clear answer"));
-        questions.add(new Question(29, "Battle of Hastings was fought in","1065","1066","1067","1068", "clear answer"));
-        questions.add(new Question(30, "Who is the current Director General Military Intelligence (MI) of Pakistan","Major General Sarfraz Sattar","Major General Syed Asim Munir Ahmed","Major General Azhar Waqas","Major General Zeeshan Asghar", "clear answer"));
 
-
-        questions.add(new Question(31, "Who punished Musa bin Nusayr for invading Spain","Hajj Bin Yousuf","Walid Bin Abdul-Malik","Umar bin Abdul Aziz","Sulaiman", "clear answer"));
-        questions.add(new Question(32, "Battale of ZALAQA was fought between Alfanso VI and Yousaf bin Tashfeen in ","1070","1086","1121","1240", "clear answer"));
-        questions.add(new Question(33, "In which year Japan attacked Manchuria","1930","1931","1936","1937", "clear answer"));
-        questions.add(new Question(34, "Who was behind the Karachi Stock Exchange attack on 29th June 2020","Balochistan Liberation Army","Tehrik E Taliban Pakistan","RAW","Balochistan Liberation Front", "clear answer"));
-        questions.add(new Question(35, "The developers of which country has developed the world’s 1st digital contact tracing app utilizing the Exposure Notification API of Apple and Google","United States","Switzerland ","Germany","Italy", "clear answer"));
-        questions.add(new Question(36, "‘Quwwat ul-Islam’ Mosque is in","Kabul","Agra","Lahore","Delhi", "clear answer"));
-        questions.add(new Question(37, "Which Country has successful conducted a test-flight of a Hypersonic Missile after Russia","USA","North Korea","France","Israel", "clear answer"));
-//        questions.add(new Question(38, "","","","","", "clear answer"));
+        //        questions.add(new Question(38, "","","","","", "clear answer"));
 //        questions.add(new Question(39, "","","","","", "clear answer"));
 //        questions.add(new Question(40, "","","","","", "clear answer"));
         myRef = database.getReference("Quiz");

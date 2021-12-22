@@ -92,7 +92,7 @@ public class Start_Quiz_Activity extends AppCompatActivity {
     private RadioGroup group;
     private int countPaused = 0;
     FirebaseDatabase database;
-    DatabaseReference myRef, myRef1,historyRef;
+    DatabaseReference myRef, myRef1,historyRef, mref;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,11 +129,15 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         //milliseconds
         long different = new Date().getTime() - date.getTime();
         Date newDAte = new Date();
-//                if (number < 20){
+                if (number < 20){
         myRef = database.getReference("StartQuiz");
-//                }else {
-//                    myRef1 = database.getReference("Quiz");
-//                }
+                }else if (number < 20 | number > 50){
+                    mref = database.getReference("Quiz1");
+
+                }
+                else {
+                    myRef1 = database.getReference("Quiz").child("-Mr0MluK6lai7REcchUY");
+                }
         long secondsInMilli = 1000;
         long minutesInMilli = secondsInMilli * 60;
         long hoursInMilli = minutesInMilli * 60;
@@ -175,11 +179,15 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             }
         });
 
-//            if (number < 20 ){
+            if (number < 20 ){
         retrieveData();
-//            }else {
-//                retrieveData();
-//            }
+            }else if (number > 20 | number < 50){
+                retrieveData2();
+
+            }
+            else {
+                retrieveData1();
+            }
 
         questions = new ArrayList<>();
 //            questions.add(new Question(1, "It takes 3 minutes to boil an egg. How much time will it take to boil 6 eggs together?","18","6","3","0", "clear answer"));
@@ -850,6 +858,40 @@ public class Start_Quiz_Activity extends AppCompatActivity {
         });
     }
 
+    public void retrieveData2(){
+        ProgressDialog progressDialog = new ProgressDialog(Start_Quiz_Activity.this);
+        progressDialog.setMessage("Getting");
+        progressDialog.show();
+
+        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressDialog.hide();
+                for (DataSnapshot dss: snapshot.getChildren()){
+                    Question question = dss.getValue(Question.class);
+                    questions.add(question);
+                    ans1.add(question.getAnswer());
+                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+                    recyclerView.setNestedScrollingEnabled(false);
+                    recyclerView.suppressLayout(false);
+
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(questionAdapter);
+                    questionAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                progressDialog.hide();
+                Toast.makeText(Start_Quiz_Activity.this, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void retrieveData1(){
         ProgressDialog progressDialog = new ProgressDialog(Start_Quiz_Activity.this);
         progressDialog.setMessage("Getting");
@@ -859,13 +901,15 @@ public class Start_Quiz_Activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 progressDialog.hide();
                 for (DataSnapshot dss: snapshot.getChildren()){
-                    String key = dss.getKey();
-                    for (DataSnapshot dss1: dss.getChildren()){
-                        int key1 = Integer.parseInt(dss1.getKey());
-                        if (key1 < 30){
-                            Question question = dss1.getValue(Question.class);
+//                    String key = dss.getKey();
+//                    for (DataSnapshot dss1: dss.getChildren()){
+//                        int key1 = Integer.parseInt(dss1.getKey());
+//                        if (key1 < 30){
+                            Question question = dss.getValue(Question.class);
                             questions.add(question);
-                            final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+                    ans1.add(question.getAnswer());
+
+                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
                             recyclerView.stopNestedScroll();
 //        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
@@ -875,28 +919,28 @@ public class Start_Quiz_Activity extends AppCompatActivity {
                             recyclerView.setItemAnimator(new DefaultItemAnimator());
                             recyclerView.setAdapter(questionAdapter);
                             questionAdapter.notifyDataSetChanged();
-                        }else {
-                            break;
-                        }
+//                        }else {
+//                            break;
+//                        }
 
-                    }
+//                    }
 
                 }
 
-                for (DataSnapshot dss: snapshot.getChildren()){
-                    Question question = dss.getValue(Question.class);
-                    questions.add(question);
-                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-                    recyclerView.stopNestedScroll();
-//        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
-                    recyclerView.setNestedScrollingEnabled(false);
-//                    recyclerView.suppressLayout(false);
-
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(questionAdapter);
-                    questionAdapter.notifyDataSetChanged();
-                }
+//                for (DataSnapshot dss: snapshot.getChildren()){
+//                    Question question = dss.getValue(Question.class);
+//                    questions.add(question);
+//                    final QuestionAdapter questionAdapter=new QuestionAdapter(questions);
+//                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+//                    recyclerView.stopNestedScroll();
+////        recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+//                    recyclerView.setNestedScrollingEnabled(false);
+////                    recyclerView.suppressLayout(false);
+//
+//                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+//                    recyclerView.setAdapter(questionAdapter);
+//                    questionAdapter.notifyDataSetChanged();
+//                }
             }
 
             @Override

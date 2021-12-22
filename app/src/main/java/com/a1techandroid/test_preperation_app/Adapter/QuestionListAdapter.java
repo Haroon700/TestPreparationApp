@@ -51,7 +51,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         Activity context = (Activity) recyclerView.getContext();
         Point windowDimensions = new Point();
         context.getWindowManager().getDefaultDisplay().getSize(windowDimensions);
-        itemHeight = Math.round(windowDimensions.y * 0.6f);
+        itemHeight = Math.round(windowDimensions.y * 0.4f);
     }
 
     @NotNull
