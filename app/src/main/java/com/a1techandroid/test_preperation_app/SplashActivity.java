@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
 //        saveData1();
 //        saveData2();
 //        saveData3();
-//        testForGEt();
+        testForGEt();
 //        saveData();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -56,54 +56,54 @@ public class SplashActivity extends AppCompatActivity {
 
     public void testForGEt(){
         ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question(17, "the most devastating migratory pest is","Cutworm","Army worm","Locust","None of the above", "None of the above"));
+        questions.add(new Question(18, "The Shahid Afridi Foundation together with___________distributed winter clothing to underprivileged people of Balochistan on 1st Feb 2019","Pakistan Airforce   ","Pakistan Army","Pakistan Navy","Pakistan Coast Guards", "Pakistan Airforce"));
+        questions.add(new Question(19, "Which of the following famous personality of Pakistan visited Pakistan cricket team’s dressing room in S.Africa on 1st Feb 2019","Ex-CJP Mian Saqib Nisar","Army chief General Bajwa","Foreign minister Shah Mehmood Qureshi","Ex-President Perveez Musharaf", "Ex-President Perveez Musharaf"));
+        questions.add(new Question(20, "Which of the following methods of tunneling is used for long tunnels at great depths","Army method","Needle beam method","Austrian method","English method  ", "Austrian method"));
+        questions.add(new Question(33, "In which year Japan attacked Manchuria","1930","1931","1936","1937", "clear answer"));
+        questions.add(new Question(34, "Who was behind the Karachi Stock Exchange attack on 29th June 2020","Balochistan Liberation Army","Tehrik E Taliban Pakistan","RAW","Balochistan Liberation Front", "Balochistan Liberation Front"));
+        questions.add(new Question(35, "The developers of which country has developed the world’s 1st digital contact tracing app utilizing the Exposure Notification API of Apple and Google","United States","Switzerland ","Germany","Italy", "Germany"));
+        questions.add(new Question(36, "‘Quwwat ul-Islam’ Mosque is in","Kabul","Agra","Lahore","Delhi", "Delhi"));
 
-        questions.add(new Question(21, "According to the article 45 of constitution, who possess the constitutional right to pardon a death row defendant ","Chief Justice of Pakistan","Chief of Army Staff of Pakistan","President of Pakistan","Prime Minister of Pakistan", "Chief of Army Staff of Pakistan"));
-        questions.add(new Question(22, "How many Urdu Words are used in the National Anthem of Pakistan","5","2","1","2", "2"));
-        questions.add(new Question(23, "The Battle of Yarmouk was fought during the caliphate o","Hazrat Abu Bakar (RA)","Hazrat Usman (RA)","Hazrat Umar (RA)","Hazrat Ali (RA)", "Hazrat Abu Bakar (RA)"));
-        questions.add(new Question(24, "Who abolished Khilafat in Turkey","Alliance","British Army","Mustafa Kemal Atatürk","None of These", "None of These"));
         questions.add(new Question(25, "Chief Election Commissioner Sikandar Sultan Raja was a","Retired Justice","Retired Civil Bureaucrat","Retired Army Officer","None of these", "Retired Army Officer"));
         questions.add(new Question(26, "The Third Battle of Panipat was fought between","Ahmad Shah Abdali and Marathas","Babur and Ibrahim Lodi","Akbar and Lal Singh","Ahmed Shah and Balaji Baji Rao", "Akbar and Lal Singh"));
         questions.add(new Question(28, "The Battle of Hattin was fight in ","1178","1187","1189","1200", "1189"));
         questions.add(new Question(29, "Battle of Hastings was fought in","1065","1066","1067","1068", "1068"));
         questions.add(new Question(30, "Who is the current Director General Military Intelligence (MI) of Pakistan","Major General Sarfraz Sattar","Major General Syed Asim Munir Ahmed","Major General Azhar Waqas","Major General Zeeshan Asghar", "Major General Sarfraz Sattar"));
 
+        questions.add(new Question(21, "According to the article 45 of constitution, who possess the constitutional right to pardon a death row defendant ","Chief Justice of Pakistan","Chief of Army Staff of Pakistan","President of Pakistan","Prime Minister of Pakistan", "Chief of Army Staff of Pakistan"));
+        questions.add(new Question(22, "How many Urdu Words are used in the National Anthem of Pakistan","5","2","1","2", "2"));
+        questions.add(new Question(23, "The Battle of Yarmouk was fought during the caliphate o","Hazrat Abu Bakar (RA)","Hazrat Usman (RA)","Hazrat Umar (RA)","Hazrat Ali (RA)", "Hazrat Abu Bakar (RA)"));
+        questions.add(new Question(24, "Who abolished Khilafat in Turkey","Alliance","British Army","Mustafa Kemal Atatürk","None of These", "None of These"));
+
 
         questions.add(new Question(31, "Who punished Musa bin Nusayr for invading Spain","Hajj Bin Yousuf","Walid Bin Abdul-Malik","Umar bin Abdul Aziz","Sulaiman", "Hajj Bin Yousuf"));
         questions.add(new Question(32, "Battale of ZALAQA was fought between Alfanso VI and Yousaf bin Tashfeen in ","1070","1086","1121","1240", "1121"));
-        questions.add(new Question(33, "In which year Japan attacked Manchuria","1930","1931","1936","1937", "clear answer"));
-        questions.add(new Question(34, "Who was behind the Karachi Stock Exchange attack on 29th June 2020","Balochistan Liberation Army","Tehrik E Taliban Pakistan","RAW","Balochistan Liberation Front", "clear answer"));
-        questions.add(new Question(35, "The developers of which country has developed the world’s 1st digital contact tracing app utilizing the Exposure Notification API of Apple and Google","United States","Switzerland ","Germany","Italy", "clear answer"));
-        questions.add(new Question(36, "‘Quwwat ul-Islam’ Mosque is in","Kabul","Agra","Lahore","Delhi", "clear answer"));
-        questions.add(new Question(37, "Which Country has successful conducted a test-flight of a Hypersonic Missile after Russia","USA","North Korea","France","Israel", "clear answer"));
-        questions.add(new Question(1, "If a member of ASF deserts, who will be requested to capture the deserter","Civil authorities","Hataf","Abdali","Shaheen", "clear answer"));
-        questions.add(new Question(2, "Officers and members of ASF to be subject to the ","Civil Servant Rule, 1973","Police Order, 2002","Code of Criminal Procedure, 1898","Pakistan Army Act, 1952", "clear answer"));
-        questions.add(new Question(3, "According to ASF Act 1975, who is head of the Airports Security Force (ASF)"," Force Commander","Director General","Army Chief","Prime Minister", "clear answer"));
-        questions.add(new Question(4, "According to ASF Act 1975, the head of the Airports Security Force (ASF) shall be appointed by the","Prime Minister","Army Chief","Director General","Federal Government", "clear answer"));
-        questions.add(new Question(5, "Who has been named as India’s first Chief of Defence Staff?","Bikram Singh","Bipin Rawat","VK Singh","Deepak Kapoor", "clear answer"));
-        questions.add(new Question(6, "Article 58(2b) of constitution 1973 is about","Power of President to dismiss Army Chief","Power of President to dissolve Provincial Assemblies","Power of President to dissolve National Assembly","Power of President to dissolve Senate", "clear answer"));
-        questions.add(new Question(7, "How many U.S. states border the Pacific Ocean","Four","Three","Five","Seven", "clear answer"));
-        questions.add(new Question(8, "Mojave Desert desert is located in","Afghanistan","India","Australia","USA", "clear answer"));
-        questions.add(new Question(9, "The creator of the popular numbers puzzle Sudoku","Maki Kaji","Shinzo Teng","Mami Suzuki","Hiroko Akutsu", "clear answer"));
-        questions.add(new Question(10, "What is the new name of the island of Madagascar","Haitti","Malagasy","Mozambique","Maputo", "clear answer"));
+       questions.add(new Question(37, "Which Country has successful conducted a test-flight of a Hypersonic Missile after Russia","USA","North Korea","France","Israel", "USA"));
+        questions.add(new Question(1, "If a member of ASF deserts, who will be requested to capture the deserter","Civil authorities","Hataf","Abdali","Shaheen", "Shaheen"));
+        questions.add(new Question(2, "Officers and members of ASF to be subject to the ","Civil Servant Rule, 1973","Police Order, 2002","Code of Criminal Procedure, 1898","Pakistan Army Act, 1952", "Code of Criminal Procedure"));
+        questions.add(new Question(3, "According to ASF Act 1975, who is head of the Airports Security Force (ASF)"," Force Commander","Director General","Army Chief","Prime Minister", "Force Commander"));
+        questions.add(new Question(4, "According to ASF Act 1975, the head of the Airports Security Force (ASF) shall be appointed by the","Prime Minister","Army Chief","Director General","Federal Government", "Director General"));
+        questions.add(new Question(5, "Who has been named as India’s first Chief of Defence Staff?","Bikram Singh","Bipin Rawat","VK Singh","Deepak Kapoor", "VK Singh"));
+        questions.add(new Question(6, "Article 58(2b) of constitution 1973 is about","Power of President to dismiss Army Chief","Power of President to dissolve Provincial Assemblies","Power of President to dissolve National Assembly","Power of President to dissolve Senate", "Power of President to dissolve Provincial Assemblies"));
+        questions.add(new Question(7, "How many U.S. states border the Pacific Ocean","Four","Three","Five","Seven", "Four"));
+        questions.add(new Question(8, "Mojave Desert desert is located in","Afghanistan","India","Australia","USA", "India"));
+        questions.add(new Question(9, "The creator of the popular numbers puzzle Sudoku","Maki Kaji","Shinzo Teng","Mami Suzuki","Hiroko Akutsu", "Shinzo Teng"));
+        questions.add(new Question(10, "What is the new name of the island of Madagascar","Haitti","Malagasy","Mozambique","Maputo", "Maputo"));
 
-        questions.add(new Question(11, "Chief of which Armed Force has been awarded Highest Military Award of US armed forces in March 2018 (US legion of merit","Pak Air Force","Pak Army","Pak Navy","Indian Army", "clear answer"));
-        questions.add(new Question(12, "Who recently conferred with King Abdul Aziz Medal of Excellence (Highest Military Award of Saudi Arabia)?","Chief of Army Staff Qamar Bajwa","Ex Chief Admiral Muhammad Zakaullah","Admiral Zafar Abbasi","Air Chief Marshal Sohail Aman", "clear answer"));
-        questions.add(new Question(13, "Who hoisted the largest national flag in the history of Pakistan at Wagah Border on the eve of Pakistan’s 70th anniversary?","Chief Minister Shehbaz Sharif","President Mamnoon Hussain","Prime Minister Shahid Khaqan Abbasi","Chief of Army Staff General Qamar Javed Bajwa", "clear answer"));
-        questions.add(new Question(14, "PAKISTAN 9th International Defense Exhibition and Seminar to be held on 22-25 November-2016 in Karachi Expo Center, its name?","Defense Production Workshop-2016","Army Arms Ideas-2016","IDEAS-2016","IDEAS-2016", "clear answer"));
-        questions.add(new Question(15, "22nd Amendment in 1973 Constitution of Pakistan is related to","Pak Army Trail Courts","Powers of Election Commission Members","Related to NRO"," Not made yet", "clear answer"));
-        questions.add(new Question(16, "After Hijrat to madina, what first important thing Holy prophet (SAW) did","Built a mosque for prayers  ","Built his house","Created baitulmal","Raised an Army", "clear answer"));
-        questions.add(new Question(17, "the most devastating migratory pest is","Cutworm","Army worm","Locust","None of the above", "clear answer"));
-        questions.add(new Question(18, "The Shahid Afridi Foundation together with___________distributed winter clothing to underprivileged people of Balochistan on 1st Feb 2019","Pakistan Airforce   ","Pakistan Army","Pakistan Navy","Pakistan Coast Guards", "clear answer"));
-        questions.add(new Question(19, "Which of the following famous personality of Pakistan visited Pakistan cricket team’s dressing room in S.Africa on 1st Feb 2019","Ex-CJP Mian Saqib Nisar","Army chief General Bajwa","Foreign minister Shah Mehmood Qureshi","Ex-President Perveez Musharaf", "clear answer"));
-        questions.add(new Question(20, "Which of the following methods of tunneling is used for long tunnels at great depths","Army method","Needle beam method","Austrian method","English method  ", "clear answer"));
-
+        questions.add(new Question(11, "Chief of which Armed Force has been awarded Highest Military Award of US armed forces in March 2018 (US legion of merit","Pak Air Force","Pak Army","Pak Navy","Indian Army", "Pak Army"));
+        questions.add(new Question(12, "Who recently conferred with King Abdul Aziz Medal of Excellence (Highest Military Award of Saudi Arabia)?","Chief of Army Staff Qamar Bajwa","Ex Chief Admiral Muhammad Zakaullah","Admiral Zafar Abbasi","Air Chief Marshal Sohail Aman", "Admiral Zafar Abbasi"));
+        questions.add(new Question(13, "Who hoisted the largest national flag in the history of Pakistan at Wagah Border on the eve of Pakistan’s 70th anniversary?","Chief Minister Shehbaz Sharif","President Mamnoon Hussain","Prime Minister Shahid Khaqan Abbasi","Chief of Army Staff General Qamar Javed Bajwa", "President Mamnoon Hussain"));
+        questions.add(new Question(14, "PAKISTAN 9th International Defense Exhibition and Seminar to be held on 22-25 November-2016 in Karachi Expo Center, its name?","Defense Production Workshop-2016","Army Arms Ideas-2016","IDEAS-2016","IDEAS-2016", "IDEAS-2016"));
+        questions.add(new Question(15, "22nd Amendment in 1973 Constitution of Pakistan is related to","Pak Army Trail Courts","Powers of Election Commission Members","Related to NRO"," Not made yet", "Related to NRO"));
+        questions.add(new Question(16, "After Hijrat to madina, what first important thing Holy prophet (SAW) did","Built a mosque for prayers  ","Built his house","Created baitulmal","Raised an Army", "Created baitulmal"));
 
 
         //        questions.add(new Question(38, "","","","","", "clear answer"));
 //        questions.add(new Question(39, "","","","","", "clear answer"));
 //        questions.add(new Question(40, "","","","","", "clear answer"));
-        myRef = database.getReference("Quiz");
-        myRef.push().setValue(questions);
+        myRef = database.getReference("Quiz2");
+        myRef.setValue(questions);
 
     }
 
