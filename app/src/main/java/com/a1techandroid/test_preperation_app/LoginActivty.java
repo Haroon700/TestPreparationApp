@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +61,8 @@ public class LoginActivty extends AppCompatActivity {
     RelativeLayout forgotPassword, googleBtn;
     Dialog selectImageFromDialog;
     SpinKitView spinKitView;
+    CheckBox fee_checkbox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,12 +88,29 @@ public class LoginActivty extends AppCompatActivity {
         forgotPassword =  findViewById(R.id.forgot_layout);
         spinKitView =  findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.INVISIBLE);
+        fee_checkbox = findViewById(R.id.checkBox1);
+
         loginButton1.setReadPermissions(Arrays.asList("haroon.chudhary555@gmail.com"));
         Log.i("test", "test");
 
     }
 
     private void setUpClick(){
+
+        fee_checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(fee_checkbox.isChecked())
+                {
+                    fee_checkbox.setChecked(false);
+                }
+                else
+                {
+                    fee_checkbox.setChecked(true);
+
+                }
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
