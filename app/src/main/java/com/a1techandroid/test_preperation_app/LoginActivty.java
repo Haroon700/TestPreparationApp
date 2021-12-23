@@ -91,6 +91,8 @@ public class LoginActivty extends AppCompatActivity {
         spinKitView =  findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.INVISIBLE);
         fee_checkbox = findViewById(R.id.checkBox1);
+        etEmail.setText(getValue());
+
 
         loginButton1.setReadPermissions(Arrays.asList("haroon.chudhary555@gmail.com"));
         Log.i("test", "test");
