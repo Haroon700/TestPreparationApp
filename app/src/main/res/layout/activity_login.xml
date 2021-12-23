@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/check"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/password_layout"
             >
@@ -146,7 +146,7 @@
             android:layout_below="@+id/forgot_layout"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_corner"
             android:text="LOGIN"
             android:textColor="@color/white"
