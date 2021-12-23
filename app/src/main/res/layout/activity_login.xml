@@ -93,12 +93,36 @@
                 android:textSize="18dp"  />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/check"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/password_layout"
+            >
 
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="Fees Paid Rs100:"
+                android:textColor="#276ca4"
+                android:checked="false"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember me"
+                android:textColor="@color/color9"
+                />
+        </LinearLayout>
         <RelativeLayout
             android:id="@+id/forgot_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/password_layout"
+            android:layout_below="@+id/check"
             android:layout_centerInParent="true"
             android:layout_marginTop="30dp">
 
