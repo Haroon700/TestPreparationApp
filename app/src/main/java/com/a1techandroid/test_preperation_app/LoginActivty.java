@@ -2,7 +2,9 @@ package com.a1techandroid.test_preperation_app;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -103,14 +105,18 @@ public class LoginActivty extends AppCompatActivity {
                 if(fee_checkbox.isChecked())
                 {
                     fee_checkbox.setChecked(false);
+
                 }
                 else
                 {
+                    saveFromEditText(etEmail.getText().toString());
                     fee_checkbox.setChecked(true);
 
                 }
             }
         });
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +156,20 @@ public class LoginActivty extends AppCompatActivity {
 //                showDialog();
             }
         });
+    }
+
+    private String getValue() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String savedValue = sharedPref.getString("KEY", ""); //the 2 argument return default value
+
+        return savedValue;
+    }
+
+    private void saveFromEditText(String text) {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("KEY", text);
+        editor.apply();
     }
 
     private void login(String email, String password){

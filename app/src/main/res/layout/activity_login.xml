@@ -98,6 +98,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/check"
+            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/password_layout"
             >
@@ -124,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/check"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/textViewForgotPassword"
